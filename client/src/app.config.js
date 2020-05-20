@@ -1,0 +1,20 @@
+export default {
+  pages: [
+    'pages/index/index',
+    'pages/weather/index'
+  ],
+  window: {
+    backgroundColor: '#F6F6F6',
+    backgroundTextStyle: 'light',
+    navigationBarBackgroundColor: '#F6F6F6',
+    navigationBarTitleText: '一江明月一江秋',
+    navigationBarTextStyle: 'white',
+    navigationStyle: 'custom'
+  },
+  sitemapLocation: 'sitemap.json',
+  permission: {
+    'scope.userLocation': {
+      'desc': '我们需要你的位置信息以实现定位'
+    }
+  }
+}

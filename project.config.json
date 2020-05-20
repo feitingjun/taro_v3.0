@@ -3,7 +3,7 @@
 	"cloudfunctionRoot": "cloud/",
 	"projectname": "taro_v3.0",
 	"description": "taro_v3.0",
-	"appid": "wxfa99ff66e9609acb",
+	"appid": "wxfa99ff66e9609acb", 
 	"setting": {
 		"urlCheck": false,
 		"es6": false,

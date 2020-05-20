@@ -4,13 +4,14 @@ import { View, Image, Text, ScrollView } from '@tarojs/components'
 import Navbar from '@/components/navbar/index'
 import { AtIcon } from 'taro-ui'
 
-import { getWeather } from '@/service/weather'
+import { getWeather, getForecast } from '@/service/weather'
 import QQMapWX from '@/utils/qqmap-wx-jssdk.min';
 import { cloud_img } from '@/conf/index'
 import location from '@/images/location.png'
 import Loadimg from '@/images/loading.gif'
 import styles from './index.module.less'
 import { navHeight } from '@/conf/index'
+import adCodeList from '@/utils/adcode.json';
 
 const { statusBarHeight } = Taro.getSystemInfoSync()
 const Map = new QQMapWX({
@@ -31,21 +32,37 @@ class Index extends Component {
     const _this = this;
     Taro.getLocation({
       type: 'wgs84',
-      success: async res => {
-        const data = await getWeather(res.latitude, res.longitude);
-        debugger
+      success: res => {
+        console.log(res)
         Map.reverseGeocoder({
           location: { latitude: res.latitude, longitude: res.longitude },
           coord_type: 1,
-          success: (r, d) => {
+          success: async (r, d) => {
+            const cityData = adCodeList[r.result.ad_info.adcode];
+            getForecast(cityData.cid)
+            const data = await getWeather(cityData.cid);
             _this.setState({
               weather: data,
-              city: d.reverseGeocoderSimplify.city,
-              province: d.reverseGeocoderSimplify.province,
-              district: d.reverseGeocoderSimplify.district
+              city: cityData.city,
+              province: cityData.province,
+              district: cityData.district
             })
           }
         })
+        // const data = await getWeather(res.latitude, res.longitude);
+        // debugger
+        // Map.reverseGeocoder({
+        //   location: { latitude: res.latitude, longitude: res.longitude },
+        //   coord_type: 1,
+        //   success: (r, d) => {
+        //     _this.setState({
+        //       weather: data,
+        //       city: d.reverseGeocoderSimplify.city,
+        //       province: d.reverseGeocoderSimplify.province,
+        //       district: d.reverseGeocoderSimplify.district
+        //     })
+        //   }
+        // })
       }
     })
   }

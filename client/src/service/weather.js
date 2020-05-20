@@ -1,11 +1,23 @@
-export const getWeather = async (lat, lng) => {
+const NAME = 'weather';
+
+export const getWeather = async (cid) => {
   const data = await wx.cloud.callFunction({
-    name: 'weather',
+    name: NAME,
     data: { 
       $url: 'now',
-      lat, lng
+      cid
      }
   })
-  debugger
+  return data.errMsg === 'cloud.callFunction:ok' ? data.result : null 
+}
+
+export const getForecast = async (cid) => {
+  const data = await wx.cloud.callFunction({
+    name: NAME,
+    data: { 
+      $url: 'forecast',
+      cid
+     }
+  })
   return data.errMsg === 'cloud.callFunction:ok' ? data.result : null 
 }

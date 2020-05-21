@@ -124,14 +124,54 @@
       align-items: center;
       font-size: 26px;
       justify-content: space-evenly;
-      height: 200px;
+      height: 250px;
+      .hourlyWeather{
+        color: rgb(116, 243, 122);
+      }
       Image{
         width: 50px;
       }
     }
   }
 }
+.forecast{
+  position: relative;
+  .forecastList{
+    padding: 20px 0;
+    &>View{
+      display: flex;
+      align-items: center;
+      font-size: 26px;
+      &>View{
+        flex: 1;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        margin-bottom: 20px;
+      }
+      .weather{
+        padding: 20px;
+      }
+      .time{
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        Text:first-of-type{
+          margin-bottom: 10px;
+        }
+        Text:last-of-type{
+          font-size: 20px;
+        }
+      }
+      Image{
+        width: 50px;
+        height: 50px;
+      }
+    }
+  }
+}
 .title{
+  margin-top: 20px;
   line-height: 70px;
   padding-left: 30px;
   border-bottom: 1px solid rgba(255, 255, 255, 0.5);

@@ -2,17 +2,18 @@ import React, { Component } from 'react'
 import Taro from '@tarojs/taro'
 import { View, Image, Text, ScrollView } from '@tarojs/components'
 import Navbar from '@/components/navbar/index'
-import { AtIcon } from 'taro-ui'
+import { AtIcon, AtGrid } from 'taro-ui'
 
-import { getWeather } from '@/service/weather'
+import { getWeather, getCity } from '@/service/weather'
 import QQMapWX from '@/utils/qqmap-wx-jssdk.min'
 import { cloud_img } from '@/conf/index'
 import location from '@/images/location.png'
 import Loadimg from '@/images/loading.gif'
 import styles from './index.module.less'
 import { navHeight } from '@/conf/index'
-import adCodeList from '@/utils/adcode.json'
 import LineChart from './lineChart'
+
+const zs = ['ys', 'ac', 'co', 'ct', 'fs', 'gm', 'uv', 'zs', 'yd']
 
 const { statusBarHeight } = Taro.getSystemInfoSync()
 const Map = new QQMapWX({
@@ -22,48 +23,31 @@ const Map = new QQMapWX({
 class Index extends Component {
 
   state = {
-    weather: {},
-    opacity: 0
+    opacity: 0,
+    load: 'loading'
   }
 
   componentDidMount() {
+    getCity();
     this.getLocation()
   }
   getLocation() {
-    const _this = this
     Taro.getLocation({
       type: 'wgs84',
-      success: res => {
-        console.log(res)
-        Map.reverseGeocoder({
-          location: { latitude: res.latitude, longitude: res.longitude },
-          coord_type: 1,
-          success: async (r, d) => {
-            const cityData = adCodeList[r.result.ad_info.adcode]
-            // getForecast(cityData.cid)
-            const data = await getWeather(cityData.cid)
-            _this.setState({
-              weather: data,
-              city: cityData.city,
-              province: cityData.province,
-              district: cityData.district
-            })
-          }
+      success: async res => {
+        this.getData({ location: { lat: res.latitude, lng: res.longitude } })
+      }
+    })
+  }
+  getData = (value) => {
+    this.setState({ load: 'loading' }, async () => {
+      const {code, data } = await getWeather(value)
+      if(code == 1){
+        this.setState({
+          ...data, load: 'success'
         })
-        // const data = await getWeather(res.latitude, res.longitude)
-        // debugger
-        // Map.reverseGeocoder({
-        //   location: { latitude: res.latitude, longitude: res.longitude },
-        //   coord_type: 1,
-        //   success: (r, d) => {
-        //     _this.setState({
-        //       weather: data,
-        //       city: d.reverseGeocoderSimplify.city,
-        //       province: d.reverseGeocoderSimplify.province,
-        //       district: d.reverseGeocoderSimplify.district
-        //     })
-        //   }
-        // })
+      }else{
+        this.setState({ load: 'fail' })
       }
     })
   }
@@ -85,24 +69,30 @@ class Index extends Component {
     return code.substr(1) + code.substr(0, 1)
   }
   render() {
-    const { weather: { alarmDZ, aqi, dataSK, dataZS, forecast7d, hour3data }, district, opacity } = this.state
+    const { alarmDZ, aqi, dataSK, dataZS, forecast7d, hour3data, basic,  opacity, load } = this.state
+    console.log(forecast7d)
     return (
-      dataSK ? <ScrollView scrollY className={styles.container} onScroll={this.onScroll}>
+      load == 'success' ? <ScrollView scrollY className={styles.container} onScroll={this.onScroll}>
         <View className={styles.navbar} style={{
           height: navHeight + 'px',
           paddingTop: statusBarHeight + 'px'
         }}>
           <Image style={{ opacity: opacity || '0' }} className={styles.navBg} src={`https://apip.weatherdt.com/h5/static/images/bg${this.handleCode(dataSK.weathercode)}.png`} mode='widthFix' />
           <View className={styles.navCon}>
-            <AtIcon className={styles.back} onClick={this.back} size='30px' value='chevron-left' color='#fff' />
+            <View className={styles.back} onClick={this.back}>
+              <AtIcon value='chevron-left' color='#fff' />
+              <Text>返回</Text>
+            </View>
             <View className={styles.locationBox}>
-              <Image className={[styles.location, !district && styles.loading]} src={location} mode='widthFix' />
-              <Text>{district}</Text>
+              <Image className={[styles.location, !basic.district && styles.loading]} src={location} mode='widthFix' />
+              <Text>{basic.district}</Text>
             </View>
           </View>
         </View>
-        <Image className={styles.bg} src={`https://apip.weatherdt.com/h5/static/images/bg${this.handleCode(dataSK.weathercode)}.png`} mode='widthFix' />}
-        <View className={styles.content} >
+        {/* <Image className={styles.bg} src={`https://apip.weatherdt.com/h5/static/images/bg${this.handleCode(dataSK.weathercode)}.png`} mode='scaleToFill' />} */}
+        <View className={styles.content} style={{
+          backgroundImage: `url(https://apip.weatherdt.com/h5/static/images/bg${this.handleCode(dataSK.weathercode)}.png)`
+        }}>
           <View className={styles.weaBox}>
             <View className={styles.tmp}>{dataSK.temp}°</View>
             <View className={styles.wea}>
@@ -114,6 +104,7 @@ class Index extends Component {
               <Text className={styles.aqi}>{aqi.aqi}</Text>
             </View>
           </View>
+          {alarmDZ.w.length>0 && <View className={styles.alarm}>{alarmDZ.w[0].alarm_type} {alarmDZ.w[0].alarm_level}</View>}
           <View className={styles.nowBase}>
             <View>
               <Text>降雨量</Text>
@@ -167,10 +158,35 @@ class Index extends Component {
               <View>{forecast7d.map((v, i) =>
                 <View key={i} className={styles.weather}><Text>{v.weather}</Text></View>
               )}</View>
+
+              <View>{forecast7d.map((v, i) =>
+                <View key={i}><Text>{v.ws || '-'}</Text></View>
+              )}</View>
             </View>
           </View>
-
-
+          <View className={styles.more}>
+            <View>
+              <Text>15天气预报</Text>
+              <AtIcon value='chevron-right' color='#888d93' size={16} />
+            </View>
+            <View>
+              <Text>40天气预报</Text>
+              <AtIcon value='chevron-right' color='#888d93' size={16} />
+            </View>
+          </View>
+          <View>
+            <View className={styles.title}>生活指数</View>
+            <View className={styles.zs}>{zs.map((v, i) => {
+                return <View key={i} className={styles.zsItem}>
+                  <Text>{dataZS[v].name}</Text>
+                  <View>
+                    <Text>{dataZS[v].hint}</Text>
+                    <AtIcon value='chevron-right' color='#888d93' size={16} />
+                  </View>
+                </View>
+              })}</View>
+          </View>
+          <View className={styles.source}>数据来源：中国天气网</View>
           {/* <View className={styles.forecastList}>{forecast7d.map((v, i) => {
               return <View key={i}>
                 <View className={styles.top}>
@@ -191,7 +207,11 @@ class Index extends Component {
         </View>
       </ScrollView>
         :
-        <Image className={styles.loadingGif} src={Loadimg} mode='widthFix' />
+        ( load == 'loading' ? 
+          <Image className={styles.loadingGif} src={Loadimg} mode='widthFix' />
+          :
+          <View>加载失败</View>
+        )
     )
   }
 }

@@ -6,12 +6,12 @@ import styles from './index.module.less'
 export default props => {
 
   const { data } = props;
-  console.log(data)
   const ec = {
-    onInit: (canvas, width, height) => {
+    onInit: (canvas, width, height, dpr) => {
       const chart = echarts.init(canvas, null, {
         width: width,
-        height: height
+        height: height,
+        devicePixelRatio: dpr
       })
       canvas.setChart(chart)
     
@@ -30,10 +30,7 @@ export default props => {
         },
         yAxis: { //必须，不然报错
           type: 'value',
-          show: false,
-          splitLine: {
-            show: false
-          }
+          show: false
         },
         series: [{
           type: 'line',
@@ -41,6 +38,9 @@ export default props => {
           label: {
             show: true,
             formatter: '{c}°'
+          },
+          lineStyle: {
+            width: 1
           }
         },{
           type: 'line',
@@ -49,6 +49,9 @@ export default props => {
             show: true,
             position: 'bottom',
             formatter: '{c}°'
+          },
+          lineStyle: {
+            width: 1
           }
         }]
       }

@@ -1,5 +1,4 @@
 module.exports =  async (ctx, next) => {
-  const start = new Date().getTime();
   const data = await ctx.CityList.aggregate()
     .group({
       _id: {
@@ -30,14 +29,21 @@ module.exports =  async (ctx, next) => {
     })
     .limit(1000)
     .end()
-    const a = data.list.map(v => {
+    const time1 = new Date().getTime();
+    const tree = data.list.map(v => {
       let obj = {};
       let list = [];
       v.city_list.map((item, index) => {
         if(obj[item.city_ad_code]){
-          list[obj[item.city_ad_code] - 1].district_list.push(item)
+          if( obj[item.city_ad_code].district.indexOf(item.district) == -1){
+            list[obj[item.city_ad_code].index - 1].district_list.push(item);
+            obj[item.city_ad_code].district.push(item.district)
+          }
         }else{
-          obj[item.city_ad_code] = index + 1;
+          obj[item.city_ad_code] = {
+            index: index + 1,
+            district: [item.district]
+          };
           list[index] = {
             district_list: [item],
             city: item.city,
@@ -51,6 +57,7 @@ module.exports =  async (ctx, next) => {
         city_list: list
       }
     })
-    const time = new Date().getTime() - start;
-    debugger
+    ctx.body = {
+      data: tree
+    }
 }

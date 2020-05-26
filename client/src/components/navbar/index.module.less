@@ -1,6 +1,5 @@
-.navbar{
-  background: linear-gradient(180deg,rgba(0, 0, 0, 0.5) 0%,rgba(64, 169, 255, 0) 100%);
-  position: fixed;
+:global(.nav-bar){
+  background: linear-gradient(90deg,#289af7 0%,#4dacfa 100%);
   top: 0;
   width: 100%;
   display: flex;
@@ -12,4 +11,24 @@
 }
 .back{
   margin-right: 15rpx;
+  font-size: 30rpx;
+  display: flex;
+  align-items: center;
+  line-height: 50px;
+  position: absolute;
+  height: 100%;
+  top: 0;
+  left: 0;
+  &>Text:first-of-type{
+    font-size: 46px !important;
+    display: inline-block;
+  }
+}
+.title{
+  width: 100%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 30px;
 }

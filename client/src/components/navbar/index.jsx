@@ -1,6 +1,6 @@
 import React from 'react'
 import Taro from '@tarojs/taro'
-import { View, Image } from '@tarojs/components'
+import { View, Text } from '@tarojs/components'
 import { AtIcon } from 'taro-ui'
 
 import { navHeight } from '@/conf/index'
@@ -23,10 +23,16 @@ export default (props) => {
   const style = {
     height: navHeight + 'px', 
     paddingTop: statusBarHeight + 'px',
-    background: props.background || 'transparent'
+    position: props.fixed ? 'fixed' : 'relative'
+    // background: props.background || 'linear-gradient(180deg,#40a9ff 0%,#40a9ff80 100%)'
   }
-  return <View className={styles.navbar} style={style}>
-    <AtIcon className={styles.back} onClick={back} size='30px' value='chevron-left' color='#fff' />
-    { props.title }
+  return <View className='nav-bar' style={style}>
+    <View className={styles.back} style={{ paddingTop: statusBarHeight + 'px' }} onClick={back}>
+      <AtIcon value='chevron-left' color='#fff' />
+      <Text>返回</Text>
+    </View>
+    <View className={styles.title}>
+      { props.title }
+    </View>
   </View>
 }

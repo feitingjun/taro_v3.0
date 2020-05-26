@@ -21,13 +21,3 @@ export const getWeather = async (values) => {
   })
   return data.errMsg === 'cloud.callFunction:ok' ? data.result : null 
 }
-
-export const getCity = async () => {
-  const data = await wx.cloud.callFunction({
-    name: NAME,
-    data: { 
-      $url: 'getCity'
-     }
-  })
-  return data.errMsg === 'cloud.callFunction:ok' ? data.result : null 
-}

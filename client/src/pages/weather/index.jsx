@@ -4,8 +4,7 @@ import { View, Image, Text, ScrollView } from '@tarojs/components'
 import Navbar from '@/components/navbar/index'
 import { AtIcon, AtGrid } from 'taro-ui'
 
-import { getWeather, getCity } from '@/service/weather'
-import QQMapWX from '@/utils/qqmap-wx-jssdk.min'
+import { getWeather } from '@/service/weather'
 import { cloud_img } from '@/conf/index'
 import location from '@/images/location.png'
 import Loadimg from '@/images/loading.gif'
@@ -16,9 +15,6 @@ import LineChart from './lineChart'
 const zs = ['ys', 'ac', 'co', 'ct', 'fs', 'gm', 'uv', 'zs', 'yd']
 
 const { statusBarHeight } = Taro.getSystemInfoSync()
-const Map = new QQMapWX({
-  key: 'YQCBZ-AVAWS-R2POH-6XY5K-VNOKV-NWFBP'
-})
 
 class Index extends Component {
 
@@ -28,7 +24,6 @@ class Index extends Component {
   }
 
   componentDidMount() {
-    getCity();
     this.getLocation()
   }
   getLocation() {
@@ -68,6 +63,11 @@ class Index extends Component {
   handleCode = code => {
     return code.substr(1) + code.substr(0, 1)
   }
+  toSelectCity = () => {
+    Taro.navigateTo({
+      url: '/pages/selectCity/index'
+    })
+  }
   render() {
     const { alarmDZ, aqi, dataSK, dataZS, forecast7d, hour3data, basic,  opacity, load } = this.state
     console.log(forecast7d)
@@ -83,7 +83,7 @@ class Index extends Component {
               <AtIcon value='chevron-left' color='#fff' />
               <Text>返回</Text>
             </View>
-            <View className={styles.locationBox}>
+            <View className={styles.locationBox} onClick={this.toSelectCity}>
               <Image className={[styles.location, !basic.district && styles.loading]} src={location} mode='widthFix' />
               <Text>{basic.district}</Text>
             </View>

@@ -4,8 +4,9 @@ import { Provider } from 'mobx-react'
 
 import userStore from '@/store/user'
 
-import 'taro-ui/dist/style/index.scss'
+import '@/styles/custom-variables.scss'
 import './app.less'
+import { cloud_env } from '@/conf/index'
 
 const store = {
   userStore
@@ -18,7 +19,7 @@ class App extends Component {
       console.error('请使用 2.2.3 或以上的基础库以使用云能力')
     } else {
       wx.cloud.init({
-        env: 'development-y2j06',
+        env: cloud_env,
         traceUser: true,
       })
       const { authSetting } = await Taro.getSetting();

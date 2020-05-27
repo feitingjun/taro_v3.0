@@ -13,6 +13,7 @@ export default (props) => {
   useEffect(() => {
     const fetch = async () => {
       const data = await getMweather15d(101270101)
+      debugger
       setSataList(data)
     }
     fetch()

@@ -76,7 +76,6 @@ class Index extends Component {
   }
   render() {
     const { alarmDZ, aqi, dataSK, dataZS, forecast7d, hour3data, basic,  opacity, load } = this.state
-    console.log(forecast7d)
     return (
       load == 'success' ? <ScrollView scrollY className={styles.container} onScroll={this.onScroll}>
         <View className={styles.navbar} style={{

@@ -5,7 +5,7 @@ import Navbar from '@/components/navbar/index'
 import { AtButton, AtSearchBar } from 'taro-ui'
 import NotResult from '@/components/notResult'
 
-import { getCurrentCity, getCity } from '@/service/getCity'
+import { getCurrentCity, getCity } from '@/service/city'
 import styles from './index.module.less'
 
 const hotCity = [{

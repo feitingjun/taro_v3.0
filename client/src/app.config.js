@@ -2,7 +2,8 @@ export default {
   pages: [
     'pages/index/index',
     'pages/weather/index',
-    'pages/selectCity/index'
+    'pages/selectCity/index',
+    'pages/mweather15d/index'
   ],
   window: {
     backgroundColor: '#F6F6F6',

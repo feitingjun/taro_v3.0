@@ -2,14 +2,14 @@ import Taro from '@tarojs/taro'
 import QQMapWX from '@/utils/qqmap-wx-jssdk.min'
 import { cloud_env } from '@/conf/index'
 
-const Map = new QQMapWX({
+const QQMap = new QQMapWX({
   key: 'YQCBZ-AVAWS-R2POH-6XY5K-VNOKV-NWFBP'
 })
 
 const db = wx.cloud.database({
   env: cloud_env
 })
-const _ = db.command;
+const _ = db.command
 const $ = db.command.aggregate
 const CityList = db.collection('city_list')
 
@@ -24,51 +24,50 @@ export const getCurrentCity = async () => {
   }
 }
 
-export const getAllCity = async () => {
-  const { list } = await CityList.aggregate()
-  .group({
-    _id: $.substrCP(['$city_en', 0, 1]),
-    all: $.push({
-      city_en: '$city_en',
-      city: '$city',
-      // city_ad_code: '$city_ad_code',
-      district: '$district',
-      // district_en: '$district_en',
-      // district_ad_code: '$district_ad_code',
-      // province_en: '$province_en',
-      // province: '$province',
-      // province_ad_code: '$province_ad_code',
-      // lat: '$lat',
-      // lng: '$lng',
-      cid: '$cid',
-      name: $.concat(['$district', '-', '$city'])
+export const getCity = async (keyword) => {
+  const { data } = await CityList.where(_.or([{
+    city: db.RegExp({
+      regexp: '.*' + keyword,
+      options: 'i',
     })
-  })
-  .replaceRoot({
-    newRoot: {
-      title: $.toUpper('$_id'),
-      key: $.toUpper('$_id'),
-      items: $.filter({
-        input: '$all',
-        cond: $.not($.eq(['$$this.district', '$$this.city']))
-      })
+  },{
+    city_en: db.RegExp({
+      regexp: '.*' + keyword,
+      options: 'i',
+    })
+  },{
+    district: db.RegExp({
+      regexp: '.*' + keyword,
+      options: 'i',
+    })
+  },{
+    district_en: db.RegExp({
+      regexp: '.*' + keyword,
+      options: 'i',
+    })
+  },{
+    cid: db.RegExp({
+      regexp: '.*' + keyword,
+      options: 'i',
+    })
+  }])).get()
+  const list = []
+  const map = new Map()
+  data.map(v => {
+    if(v.city == v.district){
+      v.city = ''
+    }
+    if(!map.has(v.district)){
+      map.set(v.district, true)
+      list.push(v)
     }
   })
-  .sort({
-    key: 1
-  })
-  .limit(100)
-  .end()
-  const data = list.map(v => {
-    v.items.sort((a,b) => a.cid - b.cid)
-    return v
-  })
-  return data
+  return list
 }
 
 function getAdcode (res) {
   return new Promise((resolve, reject) => {
-    Map.reverseGeocoder({
+    QQMap.reverseGeocoder({
       location: {
         latitude: res.latitude,
         longitude: res.longitude,

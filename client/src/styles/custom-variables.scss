@@ -1,3 +1,20 @@
 $color-brand: #40a6fa;
 
 @import "~taro-ui/dist/style/index.scss";
+.at-button{
+  border: none;
+  overflow: hidden;
+  &::after{
+    content: " ";
+    width: 200%;
+    height: 200%;
+    position: absolute;
+    top: 0;
+    left: 0;
+    border: 1rpx solid rgba(0,0,0,.2);
+    transform: scale(.5);
+    transform-origin: 0 0;
+    box-sizing: border-box;
+    border-radius: 16rpx;
+  }
+}

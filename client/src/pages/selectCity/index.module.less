@@ -1,22 +1,69 @@
 @import '~@/styles/common.less';
 .container{
-  background: #f1f1f1;
+  background: #fff;
+  display: flex;
+  flex-direction: column;
+  &>View:last-of-type{
+    flex: 1;
+    overflow: auto;
+  }
+}
+.searchBox{
+  :global(.at-search-bar__input-cnt){
+    border-radius: 8px;
+  }
+  :global(.at-search-bar__action){
+    background: transparent;
+    color: @color-brand;
+  }
+}
+.keyword{
+  color: @color-brand;
 }
 .content{
-  
+  padding-top: 20px;
+}
+.searchBox{
+  padding-top: 10px;
+}
+.searchList{
+  margin-top: 0;
+  padding: 20px 30px;
+}
+.listItem{
+  line-height: 90px;
+  border-bottom: 1px solid #f1f1f1;
+  &:first-of-type{
+    border-top: 1px solid #f1f1f1;
+  }
 }
 .title{
   line-height: 70px;
   background: #fff;
   padding: 0 30px;
+  font-size: 30px;
+  color: #999;
+}
+.title1{
+  margin-top: 50px;
 }
 .list{
   padding: 0px 30px;
 }
 .btn{
   width: auto;
+  line-height: 65px;
+  height: 65px;
   margin: 0;
   display: inline-block;
-  margin-top: 20px;
-  margin-bottom: 20px;
+  margin-right: 22px;
+  min-width: 150px;
+  margin-bottom: 10px;
+  border: none;
+}
+:global(.at-search-bar):after{
+  border-bottom-width: 0
+}
+.not{
+
 }

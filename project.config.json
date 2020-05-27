@@ -64,6 +64,13 @@
 					"id": -1,
 					"name": "城市选择",
 					"pathName": "pages/selectCity/index",
+					"query": "",
+					"scene": null
+				},
+				{
+					"id": -1,
+					"name": "15天",
+					"pathName": "pages/mweather15d/index",
 					"scene": null
 				}
 			]

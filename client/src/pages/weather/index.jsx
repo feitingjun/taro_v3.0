@@ -25,6 +25,12 @@ class Index extends Component {
 
   componentDidMount() {
     this.getLocation()
+    Taro.eventCenter.on('selectdeCity', arg => {
+      this.getData({ cid: arg.cid })
+    })
+  }
+  componentWillUnmount() {
+    Taro.eventCenter.off('selectdeCity')
   }
   getLocation() {
     Taro.getLocation({
@@ -39,7 +45,7 @@ class Index extends Component {
       const {code, data } = await getWeather(value)
       if(code == 1){
         this.setState({
-          ...data, load: 'success'
+          ...data, load: 'success', opacity: 0
         })
       }else{
         this.setState({ load: 'fail' })
@@ -160,18 +166,18 @@ class Index extends Component {
               )}</View>
 
               <View>{forecast7d.map((v, i) =>
-                <View key={i}><Text>{v.ws || '-'}</Text></View>
+                <View key={i} className={styles.ws}><Text>{v.ws || '-'}</Text></View>
               )}</View>
             </View>
           </View>
           <View className={styles.more}>
             <View>
-              <Text>15天气预报</Text>
-              <AtIcon value='chevron-right' color='#888d93' size={16} />
+              <Text>15日天气预报</Text>
+              <AtIcon value='chevron-right' color='#f1f1f1' size={16} />
             </View>
             <View>
-              <Text>40天气预报</Text>
-              <AtIcon value='chevron-right' color='#888d93' size={16} />
+              <Text>40日天气预报</Text>
+              <AtIcon value='chevron-right' color='#f1f1f1' size={16} />
             </View>
           </View>
           <View>
@@ -181,7 +187,7 @@ class Index extends Component {
                   <Text>{dataZS[v].name}</Text>
                   <View>
                     <Text>{dataZS[v].hint}</Text>
-                    <AtIcon value='chevron-right' color='#888d93' size={16} />
+                    <AtIcon value='chevron-right' color='#f1f1f1' size={16} />
                   </View>
                 </View>
               })}</View>

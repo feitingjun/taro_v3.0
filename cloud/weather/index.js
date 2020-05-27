@@ -5,6 +5,7 @@ const TcbRouter = require('tcb-router');
 const now = require('./routes/now');
 const forecast = require('./routes/forecast');
 const getAllCity = require('./routes/getAllCity');
+const getMweather15d = require('./routes/mweather15d');
 
 const ENV = 'development-y2j06' || cloud.DYNAMIC_CURRENT_ENV
 
@@ -33,6 +34,7 @@ exports.main = async (event, context) => {
 
   app.router('forecast', forecast)
   app.router('getAllCity', getAllCity)
+  app.router('mweather15d', getMweather15d)
 
   return app.serve()
 }

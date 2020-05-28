@@ -1,0 +1,66 @@
+@import '~@/styles/common.less';
+.container{
+  
+}
+.richText{
+  padding: 20px 30px;
+  font-size: 34px;
+  font-weight: 500;
+  line-height: 60px;
+  border-bottom: 1px solid #fafafa;
+}
+.listItem{
+  padding: 20px 0;
+  &:nth-child(even){
+    background: rgba(64, 166, 250, 0.05);
+  }
+  &>View{
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    height: 60px;
+    font-size: 28px;
+    &>View{
+      &:nth-child(1){
+        width: 20%;
+        text-align: center;
+        font-size: 32px;
+      }
+      &:nth-child(2){
+        width: 25%;
+        padding-left: 50px;
+        display: inline-flex;
+        align-items: center;
+        Image{
+          margin-right: 20px;
+        }
+      }
+      &:nth-child(3){
+        width: 25%;
+        text-align: center;
+      }
+      &:nth-child(4){
+        width: 30%;
+        padding-left: 10px;
+        display: inline-flex;
+        align-items: center;
+        Image{
+          width: 30px;
+          height: 30px;
+          margin-right: 40px;
+        }
+      }
+    }
+    Image{
+      width: 40px;
+      height: 40px;
+    }
+  }
+  .itemBottom{
+    &>View:first-of-type{
+      font-size: 26px;
+      color: #999;
+    }
+  }
+}

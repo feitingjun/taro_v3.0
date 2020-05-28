@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 import Taro from '@tarojs/taro'
-import { View, Image, Text, ScrollView } from '@tarojs/components'
+import { View, Image, Text, ScrollView, Block } from '@tarojs/components'
 import Navbar from '@/components/navbar/index'
 import { AtIcon, AtGrid } from 'taro-ui'
 
@@ -11,6 +11,7 @@ import Loadimg from '@/images/loading.gif'
 import styles from './index.module.less'
 import { navHeight } from '@/conf/index'
 import LineChart from './lineChart'
+import NotResult from '@/components/notResult'
 
 const zs = ['ys', 'ac', 'co', 'ct', 'fs', 'gm', 'uv', 'zs', 'yd']
 
@@ -42,10 +43,10 @@ class Index extends Component {
   }
   getData = (value) => {
     this.setState({ load: 'loading' }, async () => {
-      const {code, data } = await getWeather(value)
-      if(code == 1){
+      const res = await getWeather(value).catch(err => { this.setState({ load: 'fail' }) })
+      if(res && res.code == 1){
         this.setState({
-          ...data, load: 'success', opacity: 0
+          ...res.data, load: 'success', opacity: 0
         })
       }else{
         this.setState({ load: 'fail' })
@@ -72,6 +73,23 @@ class Index extends Component {
   toSelectCity = () => {
     Taro.navigateTo({
       url: '/pages/selectCity/index'
+    })
+  }
+  toMweather15d = () => {
+    Taro.navigateTo({
+      url: `/pages/mweather15d/index?cid=${this.state.basic.cid}`
+    })
+  }
+  toMweather40d = () => {
+    Taro.navigateTo({
+      url: `/pages/mweather40d/index?cid=${this.state.basic.cid}`
+    })
+  }
+  toLiveZS = () => {
+    Taro.navigateTo({
+      url: '/pages/liveZS/index',
+    }).then(res => {
+      res.eventChannel.emit('sendLiveZS', { data: this.state.dataZS })
     })
   }
   render() {
@@ -170,23 +188,23 @@ class Index extends Component {
             </View>
           </View>
           <View className={styles.more}>
-            <View>
+            <View onClick={this.toMweather15d}>
               <Text>15日天气预报</Text>
-              <AtIcon value='chevron-right' color='#f1f1f1' size={16} />
+              <AtIcon value='chevron-right' color='rgba(255, 255, 255, 0.5)' size={16} />
             </View>
-            <View>
+            <View onClick={this.toMweather40d}>
               <Text>40日天气预报</Text>
-              <AtIcon value='chevron-right' color='#f1f1f1' size={16} />
+              <AtIcon value='chevron-right' color='rgba(255, 255, 255, 0.5)' size={16} />
             </View>
           </View>
           <View>
             <View className={styles.title}>生活指数</View>
             <View className={styles.zs}>{zs.map((v, i) => {
-                return <View key={i} className={styles.zsItem}>
+                return <View key={i} className={styles.zsItem} onClick={this.toLiveZS}>
                   <Text>{dataZS[v].name}</Text>
                   <View>
                     <Text>{dataZS[v].hint}</Text>
-                    <AtIcon value='chevron-right' color='#f1f1f1' size={16} />
+                    <AtIcon value='chevron-right' color='rgba(255, 255, 255, 0.5)' size={16} />
                   </View>
                 </View>
               })}</View>
@@ -211,12 +229,15 @@ class Index extends Component {
             <LineChart data={forecast7d} /> */}
         </View>
       </ScrollView>
-        :
-        ( load == 'loading' ? 
-          <Image className={styles.loadingGif} src={Loadimg} mode='widthFix' />
-          :
-          <View>加载失败</View>
-        )
+      :
+      <Block>
+        <Navbar title='天气' />
+        <View>
+          {
+            load == 'loading' ? <Image className={styles.loadingGif} src={Loadimg} mode='widthFix' /> : <NotResult text='未查询到天气信息' />
+          }
+        </View>
+      </Block>
     )
   }
 }

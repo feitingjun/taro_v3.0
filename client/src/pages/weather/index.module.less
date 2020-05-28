@@ -69,13 +69,6 @@ page{
   height: 16Px;
   margin-right: 10px;
 }
-.loadingGif{
-  width: 70%;
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-}
 .content{
   position: relative;
   z-index: 2;
@@ -230,6 +223,7 @@ page{
     display: flex;
     align-items: center;
     color: #f1f1f1;
+    line-height: 40px;
   }
 }
 .title{
@@ -249,8 +243,9 @@ page{
     display: flex;
     justify-content: center;
     align-items: center;
-    color: #f1f1f1;
+    color: rgba(255, 255, 255, 0.5);
     height: 140px;
+    line-height: 70px;
     &:first-of-type{
       border-right: 1px solid rgba(255, 255, 255, 0.2);
     }
@@ -260,6 +255,13 @@ page{
   font-size: 24rpx;
   line-height: 120px;
   text-align: center;
+}
+.loadingGif{
+  width: 70%;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
 }
 
 @keyframes animation {

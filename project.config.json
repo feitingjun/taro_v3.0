@@ -7,9 +7,10 @@
 	"setting": {
 		"urlCheck": false,
 		"es6": false,
+		"enhance": false,
 		"postcss": false,
 		"preloadBackgroundData": false,
-		"minified": false,
+		"minified": true,
 		"newFeature": true,
 		"coverView": true,
 		"autoAudits": false,
@@ -68,9 +69,17 @@
 					"scene": null
 				},
 				{
-					"id": -1,
+					"id": 2,
 					"name": "15天",
 					"pathName": "pages/mweather15d/index",
+					"query": "cid=101270101",
+					"scene": null
+				},
+				{
+					"id": -1,
+					"name": "40天",
+					"pathName": "pages/mweather40d/index",
+					"query": "",
 					"scene": null
 				}
 			]

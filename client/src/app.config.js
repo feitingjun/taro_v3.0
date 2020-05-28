@@ -3,7 +3,9 @@ export default {
     'pages/index/index',
     'pages/weather/index',
     'pages/selectCity/index',
-    'pages/mweather15d/index'
+    'pages/mweather15d/index',
+    'pages/mweather40d/index',
+    'pages/liveZS/index'
   ],
   window: {
     backgroundColor: '#F6F6F6',

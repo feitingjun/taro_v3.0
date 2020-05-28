@@ -1,0 +1,37 @@
+@import '~@/styles/common.less';
+.container{
+  
+}
+.richText{
+  padding: 20px 30px;
+  font-size: 34px;
+  font-weight: 500;
+  line-height: 60px;
+  border-bottom: 1px solid #fafafa;
+}
+.listItem{
+  padding: 20px 0;
+  display: flex;
+  align-items: center;
+  height: 120px;
+  padding: 0 30px;
+  font-size: 28px;
+  &:nth-child(even){
+    background: rgba(64, 166, 250, 0.05);
+  }
+  Text{
+    &:nth-child(1){
+      font-size: 32px;
+      width: 25%;
+    }
+    &:nth-child(2), &:nth-child(3){
+      width: 20%;
+    }
+  }
+  Image{
+    width: 40px;
+    height: 40px;
+    margin-right: 20px;
+    margin-left: 20px;
+  }
+}

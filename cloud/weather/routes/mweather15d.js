@@ -54,31 +54,49 @@ module.exports =  async (ctx, next) => {
 
 function handleAngle(num){
   if(num == 0){
-    // return 0
-    return '南风'
+    return {
+      angle: 0,
+      name: '南风'
+    }
   }else if(num == 1){
-    // return 225
-    return '东北风'
+    return {
+      angle: 225,
+      name: '东北风'
+    }
   }else if(num == 2){
-    // return 270
-    return '东风'
+    return {
+      angle: 270,
+      name: '东风'
+    }
   }else if(num == 3){
-    // return 315
-    return '东南风'
+    return {
+      angle: 315,
+      name: '东南风'
+    }
   }else if(num == 4){
-    // return 315
-    return '南风'
+    return {
+      angle: 0,
+      name: '南风'
+    }
   }else if(num == 5){
-    // return 45
-    return '西南风'
+    return {
+      angle: 45,
+      name: '西南风'
+    }
   }else if(num == 6){
-    // return 90
-    return '西风'
+    return {
+      angle: 90,
+      name: '西风'
+    }
   }else if(num == 7){
-    // return 135
-    return '西北风'
+    return {
+      angle: 135,
+      name: '西北风'
+    }
   }else if(num == 8){
-    // return 180
-    return '北风'
+    return {
+      angle: 180,
+      name: '北风'
+    }
   }
 }

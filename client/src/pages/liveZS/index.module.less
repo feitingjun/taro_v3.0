@@ -1,0 +1,28 @@
+@import '~@/styles/common.less';
+.container{
+  padding: 0 30px;
+}
+.listItem{
+  border-bottom: 1px solid #f1f1f1;
+  padding: 22px 0;
+  &>View{
+    &:first-of-type{
+      font-size: 32px;
+      margin-bottom: 10px;
+      Text{
+        &:first-of-type{
+          color: @color-brand;
+          margin-right: 10px;
+        }
+        &:last-of-type{
+          font-size: 26px;
+          color: #555;
+        }
+      }
+    }
+    &:last-of-type{
+      font-size: 26px;
+      color: #999;
+    }
+  }
+}

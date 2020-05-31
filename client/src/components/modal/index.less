@@ -1,0 +1,66 @@
+.at-modal-mask{
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(0, 0, 0, 0.5);
+  z-index: 3000;
+  // display: none;
+  transition: all 10s;
+  // opacity: 0;
+}
+.at-modal-body{
+  width: 500px;
+  height: 400px;
+  background: #fff;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transition: all 10s;
+}
+.at-modal-mask-show{
+  display: flex;
+  opacity: 1;
+  .at-modal-body{
+    transform: scale(1);
+  }
+}
+.at-modal-mask-hide{
+  display: none;
+  opacity: 0;
+  .at-modal-body{
+    transform: scale(0);
+  }
+}
+.at-modal-mask-animation-show{
+  display: flex;
+  opacity: 1;
+  .at-modal-body{
+    transform: scale(1);
+  }
+}
+.at-modal-mask-animation-hide{
+  opacity: 0;
+  .at-modal-body{
+    transform: scale(0);
+  }
+}
+// @keyframes animation1 {
+//   from {
+//     opacity: 0;
+//     display: block;
+//   }
+//   to {
+//     opacity: 1;
+//   }
+// }
+// @keyframes animation2 {
+//   from {
+//     opacity: 1;
+//   }
+//   to {
+//     opacity: 0;
+//     display: none;
+//   }
+// }

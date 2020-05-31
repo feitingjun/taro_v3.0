@@ -7,6 +7,7 @@ import { AtIcon, AtGrid } from 'taro-ui'
 import { getWeather } from '@/service/weather'
 import { cloud_img } from '@/conf/index'
 import location from '@/images/location.png'
+import noticeImg from '@/images/notice.png'
 import Loadimg from '@/images/loading.gif'
 import styles from './index.module.less'
 import { navHeight } from '@/conf/index'
@@ -92,6 +93,11 @@ class Index extends Component {
       res.eventChannel.emit('sendLiveZS', { data: this.state.dataZS })
     })
   }
+  toSubscription = () => {
+    Taro.navigateTo({
+      url: `/pages/subscription/index?cid=${this.state.basic.cid}&district=${this.state.basic.district}`
+    })
+  }
   render() {
     const { alarmDZ, aqi, dataSK, dataZS, forecast7d, hour3data, basic,  opacity, load } = this.state
     return (
@@ -116,6 +122,10 @@ class Index extends Component {
         <View className={styles.content} style={{
           backgroundImage: `url(https://apip.weatherdt.com/h5/static/images/bg${this.handleCode(dataSK.weathercode)}.png)`
         }}>
+          <View className={styles.subscription} onClick={this.toSubscription}>
+            <Image src={noticeImg} mode='widthFix' />
+            <Text>消息订阅</Text>
+          </View>
           <View className={styles.weaBox}>
             <View className={styles.tmp}>{dataSK.temp}°</View>
             <View className={styles.wea}>

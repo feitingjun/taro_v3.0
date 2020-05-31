@@ -5,7 +5,8 @@ export default {
     'pages/selectCity/index',
     'pages/mweather15d/index',
     'pages/mweather40d/index',
-    'pages/liveZS/index'
+    'pages/liveZS/index',
+    'pages/subscription/index'
   ],
   window: {
     backgroundColor: '#F6F6F6',

@@ -1,0 +1,55 @@
+@import '~@/styles/common.less';
+.container{
+  
+}
+.item{
+  border-bottom: 1px solid #f1f1f1;
+}
+.title{
+  display: flex;
+  align-items: center;
+  border-bottom: 1px solid #f1f1f1;
+  padding: 15px 32px;
+  min-height: 110px;
+  &::before{
+    content: '';
+    width: 5px;
+    height: 32px;
+    background: @color-brand;
+    margin-right: 20px;
+    display: inline-block;
+  }
+}
+.content{
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  min-height: 110px;
+  padding: 0 32px;
+  Image{
+    width: 30px;
+    height: 30px;
+  }
+}
+.checkbox{
+  width: 100%;
+  &::before{
+    border-top: none;
+  }
+  &::after{
+    border-bottom: none;
+  }
+  :global(.at-checkbox__option){
+    
+  }
+}
+.msg{
+  color: #999;
+  font-size: 24px;
+  padding: 0 32px;
+  margin-top: 40px;
+}
+.btn{
+  width: 686px;
+  margin-top: 100px;
+}

@@ -8,6 +8,7 @@ page{
   transform: translateY(100%);
   animation: animation2 0.3s linear;
   animation-fill-mode: forwards;
+  position: relative;
 }
 .navbar{
   background: transparent;
@@ -75,6 +76,25 @@ page{
   padding-top: 300px;
   color: #fff;
   background-size: 100% 100%;
+}
+.subscription{
+  position: absolute;
+  right: 0;
+  top: 200px;
+  z-index: 3;
+  font-size: 24px;
+  display: flex;
+  align-items: center;
+  height: 46px;
+  border-top-left-radius: 23px;
+  border-bottom-left-radius: 23px;
+  padding: 0 10px;
+  background: linear-gradient(90deg,rgba(#fff, 0.05) 0%,rgba(#fff, 0.2) 100%);
+  Image{
+    width: 30px;
+    height: 30px;
+    margin-right: 6px;
+  }
 }
 .alarm{
   position: absolute;

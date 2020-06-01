@@ -1,7 +1,7 @@
 const rp = require('request-promise');
 const cheerio = require('cheerio');
 
-module.exports =  async (ctx, next) => {
+module.exports = async (ctx, next) => {
 
   const { cid } = ctx._req.event;
   const values = await  Promise.all([

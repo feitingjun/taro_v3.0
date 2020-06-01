@@ -2,7 +2,7 @@ const rp = require('request-promise');
 const cheerio = require('cheerio');
 
 // 获取当日天气情况
-const getToday =  async (cid) => {
+const getToday = async (cid) => {
   const data = await rp({
     url: `http://d1.weather.com.cn/weather_index/${cid}.html?_=${new Date().getTime()}`,
     headers: {

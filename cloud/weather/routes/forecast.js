@@ -2,7 +2,7 @@ const rp = require('request-promise');
 const cheerio = require('cheerio');
 const { getToday, getAqi, getHourly, getForecast7d } = require('./getToday');
 
-module.exports =  async (ctx, next) => {
+module.exports = async (ctx, next) => {
   let { cid, location, adcode } = ctx._req.event;
   if(!cid && !location && !adcode){
     ctx.body = {

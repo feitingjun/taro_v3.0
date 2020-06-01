@@ -5,6 +5,7 @@ import Navbar from '@/components/navbar/index'
 import { AtCheckbox, AtButton, AtMessage } from 'taro-ui'
 import { navHeight } from '@/conf/index'
 import Modal from '@/components/modal/index'
+import { saveSubscription } from '@/service/weather'
 
 import styles from './index.module.less'
 import rightImg from '@/images/right.png'
@@ -13,7 +14,6 @@ export default props => {
   const { cid, district } = Current.router.params
   const [ location, setLocation ] = useState({ cid, district })
   const [ checkedList, setCheckedList ] = useState([])
-  const [ visible, setVisible ] = useState(false)
 
   useEffect(() => {
     Taro.getSetting({
@@ -34,13 +34,42 @@ export default props => {
         setCheckedList(checkedList)
       }
     })
+    Taro.eventCenter.on('selectdeCity', arg => {
+      setLocation(arg)
+    })
+    return () => {
+      Taro.eventCenter.off('selectdeCity')
+    }
   }, [])
 
-  const handleChange = checkedList => {
-    setVisible(true)
-    // setCheckedList(checkedList)
+  const handleChange = async cureetList => {
+    
+    const res = await Taro.getSetting({ withSubscriptions: true })
+    if(!res.subscriptionsSetting.mainSwitch){
+      Modal.confirm({
+        title: '系统消息',
+        content: '您没用授予消息订阅的权限，不能进行订阅',
+        openType: 'openSetting',
+        okText: '去授权'
+      })
+    }
+    const list = []
+    for(let i=0; i<cureetList.length; i++){
+      const v = cureetList[i]
+      if(checkedList.indexOf(v) == -1){
+        if(res.subscriptionsSetting.itemSettings[v] === 'accept'){
+          list.push(v)
+        }else{
+          const data = await Taro.requestSubscribeMessage({ tmplIds: [v] })
+          if(data[v] === 'accept') list.push(v)
+        }
+      }else{
+        list.push(v)
+      }
+    }
+    setCheckedList(list)
   }
-  const subscription = () => {
+  const subscription = async () => {
     if(checkedList.length==0){
       Taro.atMessage({
         'message': '请选择订阅类型',
@@ -49,26 +78,29 @@ export default props => {
       })
       return false
     }
-    Taro.requestSubscribeMessage({
-      tmplIds: checkedList
-    }).then(res => {
-      debugger
+    const res = await saveSubscription(location.cid, checkedList)
+    if(res.code == 1){
+      Taro.atMessage({
+        'message': '订阅成功',
+        'type': 'success',
+        duration: 1500
+      })
+    }
+  }
+  const toSelectCity = () => {
+    Taro.navigateTo({
+      url: '/pages/selectCity/index'
     })
   }
   return (
     <Block>
       <Navbar title='消息订阅' />
-      <Modal
-        visible={visible}
-        onCancel={() => { setVisible(false) }}
-      >
-        111111
-      </Modal>
+      <Modal id='at-modal' />
       <View className={ styles.container }>
         <AtMessage customStyle={{ top: navHeight + 'px' }} />
         <View className={styles.item}>
           <View className={styles.title}>城市</View>
-          <View className={styles.content}>
+          <View className={styles.content} onClick={toSelectCity}>
             <Text>{location.district}</Text>
             <Image src={rightImg} mode='widthFix' />
           </View>
@@ -90,7 +122,7 @@ export default props => {
             onChange={handleChange}
           />
         </View>
-        <View className={styles.msg}>请选择</View>
+        <View className={styles.msg}>请选择总是保持以上选择，否则不能每日推送消息</View>
         <AtButton className={styles.btn} type='primary' onClick={subscription}>订阅</AtButton>
       </View>
     </Block>

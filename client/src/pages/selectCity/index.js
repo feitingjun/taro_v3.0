@@ -10,63 +10,83 @@ import styles from './index.module.less'
 
 const hotCity = [{
   city: '北京',
+  district: '北京',
   cid: '101010100'
 },{
   city: '上海',
+  district: '上海',
   cid: '101020100'
 },{
   city: '深圳',
+  district: '深圳',
   cid: '101280601'
 },{
   city: '广州',
+  district: '广州',
   cid: '101280101'
 },{
   city: '武汉',
+  district: '武汉',
   cid: '101200101'
 },{
   city: '长沙',
+  district: '长沙',
   cid: '101250101'
 },{
   city: '南京',
+  district: '南京',
   cid: '101190101'
 },{
   city: '苏州',
+  district: '苏州',
   cid: '101190401'
 },{
   city: '西安',
+  district: '西安',
   cid: '101110101'
 },{
   city: '济南',
+  district: '济南',
   cid: '101120101'
 },{
   city: '青岛',
+  district: '青岛',
   cid: '101120201'
 },{
   city: '沈阳',
+  district: '沈阳',
   cid: '101070101'
 },{
   city: '重庆',
+  district: '重庆',
   cid: '101040100'
 },{
   city: '郑州',
+  district: '郑州',
   cid: '101180101'
 },{
   city: '成都',
+  district: '成都',
   cid: '101270101'
 },{
   city: '杭州',
+  district: '杭州',
   cid: '101210101'
 },{
   city: '厦门',
+  district: '厦门',
   cid: '101230201'
 },{
   city: '香港',
+  district: '香港',
   cid: '101320101'
 },{
   city: '澳门',
+  district: '澳门',
   cid: '101330101'
 },{
   city: '达州',
+  district: '达州',
   cid: '101270601'
 }]
 

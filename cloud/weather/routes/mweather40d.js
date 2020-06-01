@@ -1,6 +1,6 @@
 const rp = require('request-promise');
 
-module.exports =  async (ctx, next) => {
+module.exports = async (ctx, next) => {
   const { cid } = ctx._req.event;
 
   const data = await  rp({

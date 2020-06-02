@@ -242,7 +242,7 @@ class Index extends Component {
       :
       <Block>
         <Navbar title='天气' />
-        <View>
+        <View className={styles.container1}>
           {
             load == 'loading' ? <Image className={styles.loadingGif} src={Loadimg} mode='widthFix' /> : <NotResult text='未查询到天气信息' />
           }

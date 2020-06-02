@@ -2,7 +2,7 @@
 const cloud = require('wx-server-sdk');
 const TcbRouter = require('tcb-router');
 
-const now = require('./routes/now');
+const currentDay = require('./routes/currentDay');
 const forecast = require('./routes/forecast');
 const getAllCity = require('./routes/getAllCity');
 const getMweather15d = require('./routes/mweather15d');
@@ -25,7 +25,6 @@ exports.main = async (event, context) => {
   const app = new TcbRouter({ event })
   const wxContext = cloud.getWXContext()
   const openid = wxContext.OPENID
-debugger
   app.use(async (ctx, next) => {
     // ctx.cloud = cloud;
     ctx.db = db;
@@ -35,7 +34,7 @@ debugger
     ctx.openid = openid;
     await next();
   })
-  app.router('now', now)
+  app.router('currentDay', currentDay)
   app.router('forecast', forecast)
   app.router('getAllCity', getAllCity)
   app.router('mweather15d', getMweather15d)

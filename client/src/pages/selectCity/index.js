@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react'
-import Taro from '@tarojs/taro'
+import Taro, { Current } from '@tarojs/taro'
 import { View, Block, Text } from '@tarojs/components'
 import Navbar from '@/components/navbar/index'
 import { AtButton, AtSearchBar } from 'taro-ui'
@@ -91,6 +91,7 @@ const hotCity = [{
 }]
 
 export default (props) => {
+  const { name } = Current.router.params
   const [current, setCurrent] = useState({})
   const [cityList, setCityList] = useState([])
   const [keyword, setKeyword] = useState('')
@@ -118,7 +119,7 @@ export default (props) => {
   }
   const selectedCity = (item) => {
     if(item.cid){
-      Taro.eventCenter.trigger('selectdeCity', item)
+      Taro.eventCenter.trigger(name || 'selectdeCity', item)
       Taro.navigateBack()
     }
   }

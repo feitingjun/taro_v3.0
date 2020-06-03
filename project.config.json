@@ -55,38 +55,45 @@
 			"current": -1,
 			"list": [
 				{
-					"id": -1,
+					"id": 0,
 					"name": "天气",
-					"pathName": "pages/weather/index",
+					"pathName": "pages/weather/index/index",
 					"query": "",
 					"scene": null
 				},
 				{
-					"id": -1,
+					"id": 1,
 					"name": "城市选择",
-					"pathName": "pages/selectCity/index",
+					"pathName": "pages/weather/selectCity/index",
 					"query": "",
 					"scene": null
 				},
 				{
 					"id": 2,
 					"name": "15天",
-					"pathName": "pages/mweather15d/index",
+					"pathName": "pages/weather/mweather15d/index",
 					"query": "cid=101270101",
 					"scene": null
 				},
 				{
-					"id": -1,
+					"id": 3,
 					"name": "40天",
-					"pathName": "pages/mweather40d/index",
+					"pathName": "pages/weather/mweather40d/index",
 					"query": "",
 					"scene": null
 				},
 				{
-					"id": -1,
+					"id": 4,
 					"name": "订阅",
-					"pathName": "pages/subscription/index",
+					"pathName": "pages/weather/subscription/index",
 					"query": "cid=101270119&district=武侯区",
+					"scene": null
+				},
+				{
+					"id": -1,
+					"name": "指南针",
+					"pathName": "pages/compass/index",
+					"query": "",
 					"scene": null
 				}
 			]

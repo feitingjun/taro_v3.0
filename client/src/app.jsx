@@ -1,12 +1,12 @@
 import React, { Component } from 'react'
 import Taro from '@tarojs/taro'
 import { Provider } from 'mobx-react'
-
 import userStore from '@/store/user'
 
 import '@/styles/custom-variables.scss'
 import './app.less'
 import { cloud_env } from '@/conf/index'
+const plugin = requirePlugin('chatbot')
 
 const store = {
   userStore
@@ -22,6 +22,12 @@ class App extends Component {
         env: cloud_env,
         traceUser: true,
       })
+      plugin.init({
+        appid: '8FqqADA9nXeDa7hEgKQU4DO8FNHrPZ', //小程序示例账户，仅供学习和参考
+        openid: '',//用户的openid，非必填，建议传递该参数
+        success: () => {}, //非必填
+        fail: error => {} //非必填
+      });
       const { authSetting } = await Taro.getSetting();
       if(authSetting['scope.userInfo']){
         const { userInfo } = await Taro.getUserInfo({ lang: 'zh_CN' });

@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react'
+import React, { useState, useEffect, } from 'react'
 import Taro, { Current } from '@tarojs/taro'
 import { View, Block, Text, Image } from '@tarojs/components'
 import Navbar from '@/components/navbar/index'
@@ -104,7 +104,7 @@ export default props => {
   }
   const toSelectCity = () => {
     Taro.navigateTo({
-      url: '/pages/selectCity/index?name=selectdeCity1'
+      url: '/pages/weather/selectCity/index?name=selectdeCity1'
     })
   }
   return (

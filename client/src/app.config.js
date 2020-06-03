@@ -1,12 +1,14 @@
 export default {
   pages: [
     'pages/index/index',
-    'pages/weather/index',
-    'pages/selectCity/index',
-    'pages/mweather15d/index',
-    'pages/mweather40d/index',
-    'pages/liveZS/index',
-    'pages/subscription/index'
+    'pages/weather/index/index',
+    'pages/weather/selectCity/index',
+    'pages/weather/mweather15d/index',
+    'pages/weather/mweather40d/index',
+    'pages/weather/liveZS/index',
+    'pages/weather/subscription/index',
+    'pages/compass/index',
+    'pages/robot/index'
   ],
   window: {
     backgroundColor: '#F6F6F6',
@@ -21,5 +23,11 @@ export default {
     'scope.userLocation': {
       'desc': '我们需要你的位置信息以实现定位'
     }
+  },
+  plugins: {
+    chatbot: {
+      version: '1.1.19',
+      provider: 'wx8c631f7e9f2465e1'
+    },
   }
 }

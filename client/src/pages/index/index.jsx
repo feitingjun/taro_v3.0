@@ -7,6 +7,7 @@ import { AtGrid } from 'taro-ui'
 import styels from './index.module.less'
 import tianqiImg from '@/images/tianqi.png'
 import zhinanImg from '@/images/zhinan.png'
+import jiqiImg from '@/images/jiqi.png'
 
 @inject('store')
 @observer
@@ -25,10 +26,15 @@ class Index extends Component {
         <AtGrid hasBorder={false} onClick={this.handleGridClick} data={[{
           image: tianqiImg,
           value: '天气',
-          url: '/pages/weather/index'
+          url: '/pages/weather/index/index'
         },{
           image: zhinanImg,
-          value: '指南针'
+          value: '指南针',
+          url: '/pages/compass/index'
+        },{
+          image: jiqiImg,
+          value: '智能机器人',
+          url: '/pages/robot/index'
         }]} />
       </View>
     )

@@ -1,11 +1,11 @@
 import React, { Component } from 'react'
-import Taro from '@tarojs/taro'
+import Taro, { Current } from '@tarojs/taro'
 import { View, Image, Text, ScrollView, Block } from '@tarojs/components'
 import Navbar from '@/components/navbar/index'
 import { AtIcon, AtGrid } from 'taro-ui'
 
 import { getWeather } from '@/service/weather'
-import { cloud_img } from '@/conf/index'
+import { cloud_url } from '@/conf/index'
 import location from '@/images/location.png'
 import noticeImg from '@/images/notice.png'
 import Loadimg from '@/images/loading.gif'
@@ -26,7 +26,12 @@ class Index extends Component {
   }
 
   componentDidMount() {
-    this.getLocation()
+    const { cid } = Current.router.params
+    if(cid){
+      this.getData({ cid })
+    }else{
+      this.getLocation()
+    }
     Taro.eventCenter.on('selectdeCity', arg => {
       this.getData({ cid: arg.cid })
     })
@@ -73,29 +78,29 @@ class Index extends Component {
   }
   toSelectCity = () => {
     Taro.navigateTo({
-      url: '/pages/selectCity/index'
+      url: '/pages/weather/selectCity/index'
     })
   }
   toMweather15d = () => {
     Taro.navigateTo({
-      url: `/pages/mweather15d/index?cid=${this.state.basic.cid}`
+      url: `/pages/weather/mweather15d/index?cid=${this.state.basic.cid}`
     })
   }
   toMweather40d = () => {
     Taro.navigateTo({
-      url: `/pages/mweather40d/index?cid=${this.state.basic.cid}`
+      url: `/pages/weather/mweather40d/index?cid=${this.state.basic.cid}`
     })
   }
   toLiveZS = () => {
     Taro.navigateTo({
-      url: '/pages/liveZS/index',
+      url: '/pages/weather/liveZS/index',
     }).then(res => {
       res.eventChannel.emit('sendLiveZS', { data: this.state.dataZS })
     })
   }
   toSubscription = () => {
     Taro.navigateTo({
-      url: `/pages/subscription/index?cid=${this.state.basic.cid}&district=${this.state.basic.district}`
+      url: `/pages/weather/subscription/index?cid=${this.state.basic.cid}&district=${this.state.basic.district}`
     })
   }
   render() {

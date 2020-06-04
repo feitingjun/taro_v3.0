@@ -8,6 +8,8 @@ import styels from './index.module.less'
 import tianqiImg from '@/images/tianqi.png'
 import zhinanImg from '@/images/zhinan.png'
 import jiqiImg from '@/images/jiqi.png'
+import translateImg from '@/images/translate.png'
+import ocrImg from '@/images/ocr.png'
 
 @inject('store')
 @observer
@@ -35,6 +37,14 @@ class Index extends Component {
           image: jiqiImg,
           value: '智能机器人',
           url: '/pages/robot/index'
+        },{
+          image: translateImg,
+          value: '英汉互译',
+          url: '/pages/translate/index'
+        },{
+          image: ocrImg,
+          value: 'OCR',
+          url: '/pages/ocr/index'
         }]} />
       </View>
     )

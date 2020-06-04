@@ -5,7 +5,7 @@ import userStore from '@/store/user'
 
 import '@/styles/custom-variables.scss'
 import './app.less'
-import { cloud_env } from '@/conf/index'
+import { cloud_env, navHeight } from '@/conf/index'
 const plugin = requirePlugin('chatbot')
 
 const store = {
@@ -25,6 +25,8 @@ class App extends Component {
       plugin.init({
         appid: '8FqqADA9nXeDa7hEgKQU4DO8FNHrPZ', //小程序示例账户，仅供学习和参考
         openid: '',//用户的openid，非必填，建议传递该参数
+        navHeight: navHeight,
+        textToSpeech: false,
         success: () => {}, //非必填
         fail: error => {} //非必填
       });

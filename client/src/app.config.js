@@ -8,7 +8,10 @@ export default {
     'pages/weather/liveZS/index',
     'pages/weather/subscription/index',
     'pages/compass/index',
-    'pages/robot/index'
+    'pages/robot/index',
+    'pages/translate/index',
+    'pages/ocr/index',
+    'pages/ocr/idcard/index'
   ],
   window: {
     backgroundColor: '#F6F6F6',
@@ -26,8 +29,8 @@ export default {
   },
   plugins: {
     chatbot: {
-      version: '1.1.19',
+      version: '1.1.20',
       provider: 'wx8c631f7e9f2465e1'
-    },
+    }
   }
 }

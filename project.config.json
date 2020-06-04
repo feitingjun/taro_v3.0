@@ -95,6 +95,27 @@
 					"pathName": "pages/compass/index",
 					"query": "",
 					"scene": null
+				},
+				{
+					"id": -1,
+					"name": "英汉互译",
+					"pathName": "pages/translate/index",
+					"query": "",
+					"scene": null
+				},
+				{
+					"id": -1,
+					"name": "OCR",
+					"pathName": "pages/ocr/index",
+					"query": "",
+					"scene": null
+				},
+				{
+					"id": 8,
+					"name": "身份证识别",
+					"pathName": "pages/ocr/idcard/index",
+					"query": "",
+					"scene": null
 				}
 			]
 		}

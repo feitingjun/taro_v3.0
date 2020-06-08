@@ -1,0 +1,44 @@
+@import '~@/styles/common.less';
+.container{
+  padding: 30px;
+}
+.list{
+  overflow: hidden;
+}
+.item{
+  display: flex;
+  // align-items: center;
+  border-bottom: 2px solid #f1f1f1;
+  border-right: 1px solid #f1f1f1;
+  &>View{
+    &:first-of-type{
+      width: 200px;
+      text-align: center;
+      color: #fff;
+      padding: 25px 10px;
+      background: rgba(40, 154, 247, 0.9);
+    }
+    &:last-of-type{
+      flex: 1;
+      flex-direction: column;
+      padding: 25px 10px;
+      justify-content: center;
+      font-size: 28px;
+      display: flex;
+      align-items: center;
+      position: relative;
+      Image{
+        position: absolute;
+        right: 10px;
+        bottom: 10px;
+        width: 30px;
+        height: 30px;
+      }
+    }
+  }
+  &:nth-child(odd){
+    &>View:last-of-type{
+      background: rgba(40, 154, 247, 0.2);
+    }
+  }
+}

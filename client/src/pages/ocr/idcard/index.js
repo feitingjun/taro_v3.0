@@ -1,61 +1,85 @@
-import React, { useState, useEffect } from 'react'
+import React, { useState } from 'react'
 import Taro from '@tarojs/taro'
-import { View, Block, Image, Text } from '@tarojs/components'
+import { View, Block, Text } from '@tarojs/components'
 import Navbar from '@/components/navbar/index'
-import idcardFront from '@/images/idcard.png'
-import cameraImg from '@/images/camera.png'
+import idcardFrontImg from '@/images/idcard.png'
+import idcardBackImg from '@/images/idcard_back.png'
 import Modal from '@/components/modal/index'
-import { getOcr } from '@/service/ocr'
+import ScanCard from '@/components/scanCard'
 
 import styles from './index.module.less'
 
 export default props => {
-  
-  const chooseImage = async type => {
-    const res = await Taro.chooseImage({
-      count: 1,
-      sizeType: ['compressed'],
-      sourceType: ['album', 'camera']
-    })
-    if(res.errMsg === 'chooseImage:ok'){
-      const file = res.tempFiles[0]
-      const path = file.path
-      const size = file.size
-      const fileType = path.substr(path.lastIndexOf('.') + 1)
-      if(size/1024/1024 > 2){
-        Modal.alert({
-          content: '所选图片大小不能超过2M'
-        })
-        return false
+  const [ idcardFront, setIdcardFront ] = useState({
+    name: {}, id: {}, address: {}, gender: {}, nationality: {}
+  })
+  const [ idcardBack, setIdcardBack ] = useState({ valid_date: {} })
+  const chooseImage = async ({ code, message, data }, type) => {
+    if(code == 1){
+      if(data.idcard_res.type == 0 && type == 'front'){
+        setIdcardFront(data.idcard_res)
+      }else if(data.idcard_res.type == 1 && type == 'back'){
+        setIdcardBack(data.idcard_res)
       }
-      const cloudFile = await Taro.cloud.uploadFile({
-        cloudPath: `ocrImage/${type}.${fileType}`,
-        filePath: path
-      })
-      if(cloudFile.statusCode == 200){
-        const data = await getOcr(cloudFile.fileID, type)
-        if(data && data.errCode == 0){
-          debugger
-        }else{
-          Modal.alert({
-            content: data&&data.errMsg || '识别失败'
-          })
-        }
-      }
+    }else{
+      Modal.alert(message)
     }
   }
-
+  const handleCopy = text => {
+    text && Taro.setClipboardData({
+      data: text
+    })
+  }
+  const birthday = idcardFront.id.text && idcardFront.id.text.substr(6, 4) + '-' + idcardFront.id.text.substr(10, 2) + '-' + idcardFront.id.text.substr(12, 2)
   return (
     <Block>
       <Navbar title='身份证识别' />
       <View className={styles.container}>
-        <View className={styles.card} onClick={() => { chooseImage('front') }}>
-          <Image src={idcardFront} />
-          <View className={styles.camera}>
-            <Image src={cameraImg} mode='widthFix' />
-            <Text></Text><Text></Text><Text></Text><Text></Text>
+        <ScanCard img={idcardFrontImg} text='点击上传身份证人像面' onChange={e => { chooseImage(e, 'front') }}/>
+        <ScanCard img={idcardBackImg} text='点击上传身份证国徽面' onChange={e => { chooseImage(e, 'back') }}/>
+        <View className={styles.list}>
+          <View className={styles.item}>
+            <View>姓名</View>
+            <View onClick={handleCopy.bind(null, idcardFront.name.text)}>
+              <Text>{idcardFront.name.text}</Text>
+            </View>
           </View>
-          <View className={styles.text}>点击上传身份证人像面</View>
+          <View className={styles.item}>
+            <View>民族</View>
+            <View onClick={handleCopy.bind(null, idcardFront.nationality.text)}>
+              <Text>{idcardFront.nationality.text}</Text>
+            </View>
+          </View>
+          <View className={styles.item}>
+            <View>性别</View>
+            <View onClick={handleCopy.bind(null, idcardFront.gender.text)}>
+              <Text>{idcardFront.gender.text}</Text>
+            </View>
+          </View>
+          <View className={styles.item}>
+            <View>出生日期</View>
+            <View onClick={handleCopy.bind(null, birthday)}>
+              <Text>{birthday}</Text>
+            </View>
+          </View>
+          <View className={styles.item}>
+            <View>地址</View>
+            <View onClick={handleCopy.bind(null, idcardFront.address.text)}>
+              <Text>{idcardFront.address.text}</Text>
+            </View>
+          </View>
+          <View className={styles.item}>
+            <View>身份证号</View>
+            <View onClick={handleCopy.bind(null, idcardFront.id.text)}>
+              <Text>{idcardFront.id.text}</Text>
+            </View>
+          </View>
+          <View className={styles.item}>
+            <View>有效期限</View>
+            <View onClick={handleCopy.bind(null,idcardBack.valid_date.text)}>
+              <Text>{idcardBack.valid_date.text}</Text>
+            </View>
+          </View>
         </View>
       </View>
       <Modal id='at-modal' />

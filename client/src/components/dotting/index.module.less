@@ -1,0 +1,31 @@
+.text1, .text2, .text3{
+  font-size: 40px;
+}
+.text2{
+  animation: dot 1s linear infinite;
+}
+.text3{
+  animation: dot1 1s linear 0.3s infinite;
+}
+@keyframes dot{
+  0%{
+    opacity: 0.1;
+  }
+  30%{
+    opacity: 0.9;
+  }
+  100%{
+    opacity: 0.1;
+  }
+}
+@keyframes dot1{
+  0%{
+    opacity: 0.1;
+  }
+  30%{
+    opacity: 0.5;
+  }
+  100%{
+    opacity: 0.1;
+  }
+}

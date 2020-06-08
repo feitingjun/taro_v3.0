@@ -1,0 +1,79 @@
+@import '~@/styles/common.less';
+.container{
+  display: flex;
+  flex-direction: column;
+  padding: 30px;
+}
+.content{
+  flex: 1;
+}
+.btnBox{
+  display: flex;
+  height: 250px;
+  &>View{
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    .btn{
+      width: 250px;
+      height: 90px;
+      line-height: 90px;
+      text-align: center;
+      color: #fff;
+      border-radius: 50px;
+      border: none;
+      outline: none;
+      margin-bottom: 20px;
+      &:active{
+        opacity: 0.7;
+      }
+    }
+    View{
+      font-size: 28px;
+    }
+    &:first-of-type{
+      .btn{
+        background: linear-gradient(90deg,#A16096 0%,#EC4D63 100%);
+      }
+    }
+    &:last-of-type{
+      .btn{
+        background: linear-gradient(90deg,#1F59CC 0%,#915CA2 100%);
+      }
+    }
+  }
+}
+.item{
+  margin-bottom: 30px;
+  .time{
+    font-size: 30px;
+    color: #999;
+    text-align: center;
+    margin-bottom: 15px;
+  }
+  .itemCon{
+    padding: 30px;
+    box-shadow: 0px 0px 15px rgba(0, 0, 0, 0.1);
+    border-radius: 10px;
+    font-size: 34px;
+    color: #999;
+    min-height: 200px;
+  }
+}
+.progressBox{
+  position: fixed;
+  width: 300px;
+  height: 300px;
+  top: 50%;
+  left: 50%;
+  transform: translateX(-50%) translateY(-50%);
+  background: #000;
+  border-radius: 20px;
+  z-index: 100;
+  display: none;
+  &.show{
+    display: block;
+  }
+}

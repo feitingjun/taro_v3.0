@@ -6,12 +6,19 @@ export default {
     'pages/weather/mweather15d/index',
     'pages/weather/mweather40d/index',
     'pages/weather/liveZS/index',
+    'pages/weather/alarm/index',
     'pages/weather/subscription/index',
     'pages/compass/index',
     'pages/robot/index',
     'pages/translate/index',
     'pages/ocr/index',
-    'pages/ocr/idcard/index'
+    'pages/ocr/idcard/index',
+    'pages/ocr/bankcard/index',
+    'pages/ocr/drivinglicense/index',
+    'pages/ocr/driving/index',
+    'pages/ocr/biz/index',
+    'pages/ocr/common/index',
+    'pages/speak/index'
   ],
   window: {
     backgroundColor: '#F6F6F6',
@@ -31,6 +38,11 @@ export default {
     chatbot: {
       version: '1.1.20',
       provider: 'wx8c631f7e9f2465e1'
+    },
+    WechatSI: {
+      version: '0.0.7',
+      provider: 'wx069ba97219f66d99'
     }
-  }
+  },
+  servicemarket: true
 }

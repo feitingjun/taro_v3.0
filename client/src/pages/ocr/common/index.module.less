@@ -1,0 +1,18 @@
+@import '~@/styles/common.less';
+.container{
+}
+.card{
+  padding: 30px;
+}
+.list{
+  &>View{
+    padding: 25px 20px 25px 20px;
+    border-bottom: 1px solid #f1f1f1;
+    &:first-of-type{
+      border-top: 1px solid #f1f1f1;
+    }
+    &:nth-child(odd){
+      background: rgba(40, 154, 247, 0.2);
+    }
+  }
+}

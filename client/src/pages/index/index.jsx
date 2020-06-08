@@ -10,6 +10,7 @@ import zhinanImg from '@/images/zhinan.png'
 import jiqiImg from '@/images/jiqi.png'
 import translateImg from '@/images/translate.png'
 import ocrImg from '@/images/ocr.png'
+import speakImg from '@/images/speak.png'
 
 @inject('store')
 @observer
@@ -41,6 +42,10 @@ class Index extends Component {
           image: translateImg,
           value: '英汉互译',
           url: '/pages/translate/index'
+        },{
+          image: speakImg,
+          value: '同声传译',
+          url: '/pages/speak/index'
         },{
           image: ocrImg,
           value: 'OCR',

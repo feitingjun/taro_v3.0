@@ -10,7 +10,7 @@ module.exports = async (ctx, next) => {
       ctx.body = { code: 0, message: `新增失败 ${data.errMsg}` }
     }
   }else{
-    const data = await SubscriptionList.doc(res.data[0].openid).update({ data: { cid, district, list } });
+    const data = await SubscriptionList.doc(res.data[0]._id).update({ data: { cid, district, list } });
     if(data.errMsg === 'document.update:ok'){
       ctx.body = { code: 1, message: '更新成功' }
     }else{

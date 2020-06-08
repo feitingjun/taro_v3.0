@@ -103,6 +103,13 @@ class Index extends Component {
       url: `/pages/weather/subscription/index?cid=${this.state.basic.cid}&district=${this.state.basic.district}`
     })
   }
+  sendAlarm = () => {
+    Taro.navigateTo({
+      url: '/pages/weather/alarm/index',
+    }).then(res => {
+      res.eventChannel.emit('sendAlarm', { data: this.state.alarmDZ.w })
+    })
+  }
   render() {
     const { alarmDZ, aqi, dataSK, dataZS, forecast7d, hour3data, basic,  opacity, load } = this.state
     return (
@@ -127,12 +134,16 @@ class Index extends Component {
         <View className={styles.content} style={{
           backgroundImage: `url(https://apip.weatherdt.com/h5/static/images/bg${this.handleCode(dataSK.weathercode)}.png)`
         }}>
+          <View className={styles.updateTime}>{dataSK.time} 更新</View>
           <View className={styles.subscription} onClick={this.toSubscription}>
             <Image src={noticeImg} mode='widthFix' />
             <Text>消息订阅</Text>
           </View>
           <View className={styles.weaBox}>
-            <View className={styles.tmp}>{dataSK.temp}°</View>
+            <View className={styles.tmp}>
+              <Text>{dataSK.temp}°</Text>
+              {alarmDZ.w.length>0 && <View className={styles.alarm} onClick={this.sendAlarm}>{alarmDZ.w[0].w5} {alarmDZ.w[0].w7}</View>}
+            </View>
             <View className={styles.wea}>
               <Image className={styles.weaIcon} src={`https://apip.weatherdt.com/h5/static/images/cond-${this.handleCode(dataSK.weathercode)}.png`} mode='widthFix' />
               <Text className={styles.weaTxt}>{dataSK.weather}</Text>
@@ -142,7 +153,6 @@ class Index extends Component {
               <Text className={styles.aqi}>{aqi.aqi}</Text>
             </View>
           </View>
-          {alarmDZ.w.length>0 && <View className={styles.alarm}>{alarmDZ.w[0].alarm_type} {alarmDZ.w[0].alarm_level}</View>}
           <View className={styles.nowBase}>
             <View>
               <Text>降雨量</Text>

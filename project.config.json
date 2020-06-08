@@ -29,7 +29,7 @@
 	"compileType": "miniprogram",
 	"simulatorType": "wechat",
 	"simulatorPluginLibVersion": {},
-	"libVersion": "2.10.4",
+	"libVersion": "2.11.1",
 	"cloudfunctionTemplateRoot": "cloudfunctionTemplate",
 	"condition": {
 		"search": {
@@ -114,6 +114,13 @@
 					"id": 8,
 					"name": "身份证识别",
 					"pathName": "pages/ocr/idcard/index",
+					"query": "",
+					"scene": null
+				},
+				{
+					"id": -1,
+					"name": "同声传译",
+					"pathName": "pages/speak/index",
 					"query": "",
 					"scene": null
 				}

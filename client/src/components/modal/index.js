@@ -115,6 +115,11 @@ Modal.confirm = options => {
   })
 }
 Modal.alert = options => {
+  if(typeof options === 'string') {
+    options = {
+      content: options
+    }
+  }
   events.trigger('showModal', {
     id: 'at-modal',
     visible: true,

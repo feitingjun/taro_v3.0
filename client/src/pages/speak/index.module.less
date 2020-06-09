@@ -2,10 +2,11 @@
 .container{
   display: flex;
   flex-direction: column;
-  padding: 30px;
+  padding: 30px 0;
 }
 .content{
   flex: 1;
+  overflow: auto;
 }
 .btnBox{
   display: flex;
@@ -47,19 +48,48 @@
 }
 .item{
   margin-bottom: 30px;
+  margin-left: 30px;
+  margin-right: 30px;
   .time{
     font-size: 30px;
     color: #999;
     text-align: center;
     margin-bottom: 15px;
   }
+  &:not(.bottom){
+    .itemCon>View{
+      &:first-of-type{
+        border-bottom: 1px solid #f1f1f1;
+        padding-bottom: 20px;
+      }
+      &:last-of-type{
+        padding-top: 30px;
+        display: flex;
+        Text{
+          flex: 1;
+        }
+        Image{
+          width: 30px;
+          height: 30px;
+          margin-left: 30px;
+          margin-top: 8px;
+        }
+      }
+    }
+  }
   .itemCon{
-    padding: 30px;
-    box-shadow: 0px 0px 15px rgba(0, 0, 0, 0.1);
-    border-radius: 10px;
+    padding: 40px 50px;
+    box-shadow: 0px 0px 20px rgba(0, 0, 0, 0.1);
+    border-radius: 5px;
     font-size: 34px;
     color: #999;
     min-height: 200px;
+    &>View{
+      &:first-of-type{
+        width: 100%;
+        min-height: 60px;
+      }
+    }
   }
 }
 .progressBox{

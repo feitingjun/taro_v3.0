@@ -1,1 +1,32 @@
 @import '~@/styles/common.less';
+.container{
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.content{
+  width: 500px;
+  height: 500px;
+  position: relative;
+}
+.calibration{
+  display: inline-block;
+  width: 2px;
+  height: 480px;
+  position: absolute;
+  top: calc(50% - 240px);
+  left: calc(50% - 1px);
+  // background: #999;
+  border-top: 16px solid #666;
+  &.n15{
+    border-top-width: 24px;
+    border-top-color: #333;
+  }
+  Text{
+    position: absolute;
+    top: 10px;
+    font-size: 20px;
+    left: 50%;
+    transform: translateX(-50%);
+  }
+}

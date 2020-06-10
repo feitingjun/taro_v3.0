@@ -23,8 +23,8 @@ export default (props) => {
   const style = {
     height: navHeight + 'px', 
     paddingTop: statusBarHeight + 'px',
-    position: props.fixed ? 'fixed' : 'relative'
-    // background: props.background || 'linear-gradient(180deg,#40a9ff 0%,#40a9ff80 100%)'
+    position: props.fixed ? 'fixed' : 'relative',
+    background: props.background || 'linear-gradient(90deg,#289af7 0%,#4dacfa 100%)'
   }
   return <View className='nav-bar' style={style}>
     <View className={styles.back} style={{ paddingTop: statusBarHeight + 'px' }} onClick={back}>

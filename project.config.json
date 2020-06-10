@@ -123,6 +123,12 @@
 					"pathName": "pages/speak/index",
 					"query": "",
 					"scene": null
+				},
+				{
+					"id": -1,
+					"name": "扫码",
+					"pathName": "pages/scan/index",
+					"scene": null
 				}
 			]
 		}

@@ -13,6 +13,7 @@ import ocrImg from '@/images/ocr.png'
 import speakImg from '@/images/speak.png'
 import scanImg from '@/images/scan.png'
 import mapImg from '@/images/map.png'
+import luminanceImg from '@/images/luminance.png'
 
 @inject('store')
 @observer
@@ -60,6 +61,10 @@ class Index extends Component {
           image: mapImg,
           value: '地图',
           url: '/pages/map/index'
+        },{
+          image: luminanceImg,
+          value: '屏幕亮度',
+          url: '/pages/screenLuminance/index'
         }]} />
       </View>
     )

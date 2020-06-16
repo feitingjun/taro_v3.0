@@ -135,6 +135,13 @@
 					"id": -1,
 					"name": "地图",
 					"pathName": "pages/map/index",
+					"query": "",
+					"scene": null
+				},
+				{
+					"id": -1,
+					"name": "屏幕亮度",
+					"pathName": "pages/screenLuminance/index",
 					"scene": null
 				}
 			]

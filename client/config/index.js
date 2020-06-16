@@ -47,7 +47,7 @@ const config = {
       }
     },
     imageUrlLoaderOption: {
-      encoding: false
+      limit: false // 禁止将图片转为base64，小程序map的iconPath不支持base64
     }
   },
   h5: {

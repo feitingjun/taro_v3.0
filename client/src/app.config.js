@@ -20,7 +20,8 @@ export default {
     'pages/weather/mweather40d/index',
     'pages/weather/liveZS/index',
     'pages/weather/alarm/index',
-    'pages/weather/subscription/index'
+    'pages/weather/subscription/index',
+    'pages/screenLuminance/index'
   ],
   // subpackages: [{
   //   root: 'pages/weather',

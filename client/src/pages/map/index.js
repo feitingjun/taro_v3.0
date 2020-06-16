@@ -94,7 +94,8 @@ export default class Page extends Component {
         }
       }],
       keyword: v.title,
-      suggestion: []
+      suggestion: [],
+      scale: 16
     })
     this.map.moveToLocation({
       latitude: v.location.lat,
@@ -109,9 +110,9 @@ export default class Page extends Component {
   }
   // 点击搜索按钮
   handleSearch = () => {
-    QQMap.search({
+    QQMap.getSuggestion({
       keyword: this.state.keyword,
-      // location: location,
+      location: location,
       success: res => {
         if (res.status == 0) {
           const list = res.data.map(v => ({
@@ -188,6 +189,18 @@ export default class Page extends Component {
       this.handleCancel()
     })
   }
+  // 地图视野发生变化时 
+  onRegionChange = e => {
+    if(e.causedBy === 'scale'){
+      this.map.getScale({
+        success: res => {
+          this.setState({
+            scale: res.scale
+          })
+        }
+      })
+    }
+  }
   render() {
     const { scale, currentMarker, isOpened, keyword, suggestion, location, markers } = this.state
     return (
@@ -203,6 +216,7 @@ export default class Page extends Component {
           <View className={ styles.map }>
             <Map
               id='map'
+              scale={scale}
               onClick={this.clickMap}
               show-location={ true }
               longitude={ location.longitude }
@@ -210,6 +224,7 @@ export default class Page extends Component {
               setting={{ }}
               onMarkerTap={ this.clickMarker }
               onCalloutTap={ this.clickMarker }
+              onEnd={ this.onRegionChange }
               markers={ [{ ...location, iconPath: wzImg1, width: 25, height: 25 }, ...markers] }
             />
           </View>

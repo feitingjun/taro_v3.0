@@ -45,6 +45,9 @@ const config = {
           generateScopedName: '[name]__[local]___[hash:base64:5]'
         }
       }
+    },
+    imageUrlLoaderOption: {
+      encoding: false
     }
   },
   h5: {

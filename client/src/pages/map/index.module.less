@@ -1,31 +1,51 @@
 @import '~@/styles/common.less';
 .container{
-  padding: 30px;
+  position: relative;
 }
-.scan{
-  padding-top: 90px;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  Image{
-    width: 200px;
-    height: 200px;
-    margin-bottom: 30px;
+.searchBox{
+  position: absolute;
+  width: 100%;
+  top: 0;
+  background: #fff;
+  z-index: 100;
+}
+.map{
+  width: 100%;
+  height: 100%;
+  position: relative;
+  z-index: 99;
+  Map{
+    width: 100%;
+    height: 100%;
   }
 }
-.result{
-  margin-top: 100px;
-  font-size: 32px;
-  padding: 0 20px;
-  View{
-    &:first-of-type{
-      margin-bottom: 30px;
-      font-size: 34px;
-    }
+.resultList{
+  padding: 0 30px;
+  box-shadow: 0px 0px 30px rgba(0, 0, 0, 0.2);
+  &>View{
+    padding: 25px 0;
+    border-bottom: 1px solid #f1f1f1;
+    font-size: 34px;
     &:last-of-type{
-      color: #666;
-      word-wrap: break-word;
-      line-height: 50px;
+      border-bottom: none;
     }
+  }
+}
+.currentLocation{
+  position: fixed;
+  z-index: 100;
+  right: 30px;
+  bottom: 100px;
+  width: 90px;
+  height: 90px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: #fff;
+  border-radius: 50%;
+  box-shadow: 0 5px 10px rgba(0, 0, 0, 0.2);
+  Image{
+    width: 50px;
+    height: 50px;
   }
 }

@@ -20,8 +20,6 @@ export default props => {
         setLocation({ lat: res.latitude, lng: res.longitude })
       }
     })
-  }, [])
-  useEffect(() => {
     Taro.startCompass()
     Taro.onCompassChange(res => {
       setDirection(parseInt(res.direction))
@@ -31,6 +29,13 @@ export default props => {
       Taro.stopCompass()
     }
   }, [])
+
+  // 复制
+  const copy = data => {
+    Taro.setClipboardData({
+      data: data
+    })
+  }
   return (
     <Block>
       <Navbar title='指南针' background='#000' />
@@ -52,11 +57,11 @@ export default props => {
         <View className={styles.location}>
           <View>
             <Text>经度</Text>
-            <Text>{location.lng}°</Text>
+            <Text onClick={() => { copy(location.lng) }}>{location.lng}°</Text>
           </View>
           <View>
             <Text>纬度</Text>
-            <Text>{location.lat}°</Text>
+            <Text onClick={() => { copy(location.lat) }}>{location.lat}°</Text>
           </View>
         </View>
       </View>

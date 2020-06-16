@@ -1,13 +1,6 @@
 export default {
   pages: [
     'pages/index/index',
-    'pages/weather/index/index',
-    'pages/weather/selectCity/index',
-    'pages/weather/mweather15d/index',
-    'pages/weather/mweather40d/index',
-    'pages/weather/liveZS/index',
-    'pages/weather/alarm/index',
-    'pages/weather/subscription/index',
     'pages/compass/index',
     'pages/robot/index',
     'pages/translate/index',
@@ -20,8 +13,34 @@ export default {
     'pages/ocr/common/index',
     'pages/speak/index',
     'pages/scan/index',
-    'pages/map/index'
+    'pages/map/index',
+    'pages/weather/index/index',
+    'pages/weather/selectCity/index',
+    'pages/weather/mweather15d/index',
+    'pages/weather/mweather40d/index',
+    'pages/weather/liveZS/index',
+    'pages/weather/alarm/index',
+    'pages/weather/subscription/index'
   ],
+  // subpackages: [{
+  //   root: 'pages/weather',
+  //   name: 'weather',
+  //   pages: [
+  //     'index/index',
+  //     'selectCity/index',
+  //     'mweather15d/index',
+  //     'mweather40d/index',
+  //     'liveZS/index',
+  //     'alarm/index',
+  //     'subscription/index',
+  //   ]
+  // }],
+  // preloadRule: {
+  //   'pages/index/index': {
+  //     network: 'all',
+  //     packages: ['weather']
+  //   }
+  // },
   window: {
     backgroundColor: '#F6F6F6',
     backgroundTextStyle: 'light',
@@ -42,7 +61,7 @@ export default {
       provider: 'wx8c631f7e9f2465e1'
     },
     WechatSI: {
-      version: '0.0.7',
+      version: '0.3.4',
       provider: 'wx069ba97219f66d99'
     }
   },

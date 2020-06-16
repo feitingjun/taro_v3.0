@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 import { View } from '@tarojs/components'
-import * as echarts from '@/components/ec-canvas/echarts'
+import * as echarts from '@/pages/weather/components/ec-canvas/echarts'
 import styles from './index.module.less'
 
 export default props => {

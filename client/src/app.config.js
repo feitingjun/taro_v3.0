@@ -21,7 +21,10 @@ export default {
     'pages/weather/liveZS/index',
     'pages/weather/alarm/index',
     'pages/weather/subscription/index',
-    'pages/screenLuminance/index'
+    'pages/screenLuminance/index',
+    'pages/electricity/index',
+    'pages/login/index',
+    'pages/auth/index'
   ],
   // subpackages: [{
   //   root: 'pages/weather',

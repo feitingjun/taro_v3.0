@@ -2,6 +2,7 @@ import React, { Component } from 'react'
 import Taro from '@tarojs/taro'
 import { Provider } from 'mobx-react'
 import userStore from '@/store/user'
+import settingStore from '@/store/setting'
 
 import '@/styles/custom-variables.scss'
 import './app.less'
@@ -9,11 +10,12 @@ import { cloud_env, navHeight } from '@/conf/index'
 const plugin = requirePlugin('chatbot')
 
 const store = {
-  userStore
+  userStore,
+  settingStore
 }
 
 class App extends Component {
-
+  
   async componentDidMount () {
     if (!wx.cloud) {
       console.error('请使用 2.2.3 或以上的基础库以使用云能力')
@@ -39,11 +41,10 @@ class App extends Component {
       }
     }
   }
-
   // this.props.children 就是要渲染的页面
   render () {
     return (
-      <Provider store={store}>
+      <Provider {...store}>
         {this.props.children}
       </Provider>
     )

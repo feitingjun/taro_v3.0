@@ -4,6 +4,7 @@ import { View, Block, Text } from '@tarojs/components'
 import Navbar from '@/components/navbar/index'
 import { AtButton, AtSearchBar } from 'taro-ui'
 import NotResult from '@/components/notResult'
+import withShare from '@/components/withShare'
 
 import { getCurrentCity, getCity } from '@/service/city'
 import styles from './index.module.less'
@@ -90,7 +91,7 @@ const hotCity = [{
   cid: '101270601'
 }]
 
-export default (props) => {
+export default withShare()(props => {
   const { name } = Current.router.params
   const [current, setCurrent] = useState({})
   const [cityList, setCityList] = useState([])
@@ -168,4 +169,4 @@ export default (props) => {
       </View>
     </Block>
   )
-}
+})

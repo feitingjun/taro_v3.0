@@ -2,6 +2,7 @@ import React, { Component } from 'react'
 import Taro from '@tarojs/taro'
 import { View, Text, Block, Image, Map } from '@tarojs/components'
 import { AtSearchBar, AtActionSheet, AtActionSheetItem } from 'taro-ui'
+import withShare from '@/components/withShare'
 
 import QQMapWX from '@/utils/qqmap-wx-jssdk.min'
 import Navbar from '@/components/navbar/index'
@@ -14,6 +15,7 @@ const QQMap = new QQMapWX({
   key: 'YQCBZ-AVAWS-R2POH-6XY5K-VNOKV-NWFBP'
 })
 
+@withShare()
 export default class Page extends Component {
 
   state = {
@@ -170,7 +172,6 @@ export default class Page extends Component {
   // 点击到这儿去
   openLocation = () => {
     const current = this.state.currentMarker
-    console.log(current)
     Taro.openLocation({
       latitude: current.latitude,
       longitude: current.longitude,

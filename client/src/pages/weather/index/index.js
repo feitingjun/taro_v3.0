@@ -3,6 +3,7 @@ import Taro, { Current } from '@tarojs/taro'
 import { View, Image, Text, ScrollView, Block } from '@tarojs/components'
 import Navbar from '@/components/navbar/index'
 import { AtIcon, AtGrid } from 'taro-ui'
+import withShare from '@/components/withShare'
 
 import { getWeather } from '@/service/weather'
 import { cloud_url } from '@/conf/index'
@@ -18,6 +19,7 @@ const zs = ['ys', 'ac', 'co', 'ct', 'fs', 'gm', 'uv', 'zs', 'yd']
 
 const { statusBarHeight } = Taro.getSystemInfoSync()
 
+@withShare()
 class Index extends Component {
 
   state = {

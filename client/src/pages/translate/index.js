@@ -3,12 +3,13 @@ import Taro from '@tarojs/taro'
 import { View, Block, Image, Text } from '@tarojs/components'
 import { AtTextarea, AtButton }  from 'taro-ui'
 import Navbar from '@/components/navbar/index'
+import withShare from '@/components/withShare'
 import styles from './index.module.less'
 import traniconImg from '@/images/tranicon.png'
 
 const plugin = requirePlugin('chatbot')
 
-export default props => {
+export default withShare()(props => {
   const [ translateType, setTranslateType ] = useState('translate_cn2en')
   const [ value, setValue ] = useState('')
   const [ result, setResult ] = useState('')
@@ -75,4 +76,4 @@ export default props => {
       </View>
     </Block>
   )
-}
+})

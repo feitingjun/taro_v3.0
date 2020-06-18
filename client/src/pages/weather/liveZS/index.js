@@ -2,10 +2,11 @@ import React, { useState, useEffect } from 'react'
 import Taro, { Current } from '@tarojs/taro'
 import { View, Block, Text } from '@tarojs/components'
 import Navbar from '@/components/navbar/index'
+import withShare from '@/components/withShare'
 
 import styles from './index.module.less'
 
-export default props => {
+export default withShare()(props => {
   const [list, setList] = useState([])
   useEffect(() => {
     const eventChannel = Current.page.getOpenerEventChannel()
@@ -31,4 +32,4 @@ export default props => {
       }) }</View>
     </Block>
   )
-}
+})

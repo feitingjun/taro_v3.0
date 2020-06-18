@@ -3,11 +3,12 @@ import Taro from '@tarojs/taro'
 import { View, Text, Block, Image } from '@tarojs/components'
 import { AtButton } from 'taro-ui'
 import Navbar from '@/components/navbar/index'
+import withShare from '@/components/withShare'
 import Modal from '@/components/modal'
 import styles from './index.module.less'
 import scan1Img from '@/images/scan1.png'
 
-export default props => {
+export default withShare()(props => {
   const [ result, setResult ] = useState()
   const scanHandle = () => {
     Taro.scanCode({
@@ -44,4 +45,4 @@ export default props => {
       </View>
     </Block>
   )
-}
+})

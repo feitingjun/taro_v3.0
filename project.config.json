@@ -5,7 +5,7 @@
 	"description": "taro_v3.0",
 	"appid": "wxfa99ff66e9609acb",
 	"setting": {
-		"urlCheck": false,
+		"urlCheck": true,
 		"es6": false,
 		"enhance": false,
 		"postcss": false,
@@ -142,6 +142,13 @@
 					"id": -1,
 					"name": "屏幕亮度",
 					"pathName": "pages/screenLuminance/index",
+					"query": "",
+					"scene": null
+				},
+				{
+					"id": -1,
+					"name": "电量",
+					"pathName": "pages/electricity/index",
 					"scene": null
 				}
 			]

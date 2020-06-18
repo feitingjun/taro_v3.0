@@ -2,10 +2,11 @@ import React, { useState, useEffect } from 'react'
 import Taro, { Current } from '@tarojs/taro'
 import { View, Block, Text } from '@tarojs/components'
 import Navbar from '@/components/navbar/index'
+import withShare from '@/components/withShare'
 
 import styles from './index.module.less'
 
-export default props => {
+export default withShare()(props => {
   const [alarm, setAlarm] = useState([])
   useEffect(() => {
     const eventChannel = Current.page.getOpenerEventChannel()
@@ -13,7 +14,6 @@ export default props => {
       setAlarm(data)
     })
   }, [])
-  console.log(alarm)
   return (
     <Block>
       <Navbar title='气象预警' />
@@ -25,4 +25,4 @@ export default props => {
       })}</View>
     </Block>
   )
-}
+})

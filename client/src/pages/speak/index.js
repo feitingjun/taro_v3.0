@@ -3,6 +3,7 @@ import Taro from '@tarojs/taro'
 import { View, Block, ScrollView, Text, Image } from '@tarojs/components'
 import Navbar from '@/components/navbar/index'
 import Dotting from '@/components/dotting'
+import withShare from '@/components/withShare'
 import dateFormat from '@/utils/dateFormat'
 import loudImg from '@/images/loud.png'
 import styles from './index.module.less'
@@ -10,7 +11,7 @@ import styles from './index.module.less'
 const plugin = requirePlugin('WechatSI')
 const manager = plugin.getRecordRecognitionManager()
 
-export default props => {
+export default withShare()(props => {
   const [ list, setList ] = useState([])
   const [ show, setShow ] = useState(false)
   const [ lang, setLang ] = useState('zh_CN')
@@ -128,4 +129,4 @@ export default props => {
       {/* <View className={`${styles.progressBox} ${show ? styles.show : ''}`}></View> */}
     </Block>
   )
-}
+})

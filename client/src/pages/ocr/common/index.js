@@ -5,10 +5,11 @@ import Navbar from '@/components/navbar/index'
 import cardImg from '@/images/photo.png'
 import Modal from '@/components/modal/index'
 import ScanCard from '@/components/scanCard'
+import withShare from '@/components/withShare'
 
 import styles from './index.module.less'
 
-export default props => {
+export default withShare()(props => {
   const [ common, setCommon ] = useState([])
   const chooseImage = async ({ code, message, data }) => {
     if(code == 1){
@@ -45,4 +46,4 @@ export default props => {
       <Modal id='at-modal' />
     </Block>
   )
-}
+})

@@ -3,13 +3,14 @@ import Taro, { Current } from '@tarojs/taro'
 import { View, Block, Text, Image, RichText } from '@tarojs/components'
 import Navbar from '@/components/navbar/index'
 import NotResult from '@/components/notResult'
+import withShare from '@/components/withShare'
 import Loadimg from '@/images/loading.gif'
 import wdImg from '@/images/wd.png'
 
 import { getMweather15d } from '@/service/weather'
 import styles from './index.module.less'
 
-export default (props) => {
+export default withShare()(props => {
   const { cid } = Current.router.params
   const [dataList, setSataList] = useState({})
   const [load, setLoad] = useState('loading')
@@ -73,4 +74,4 @@ export default (props) => {
       }
     </Block>
   )
-}
+})

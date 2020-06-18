@@ -5,10 +5,11 @@ import Navbar from '@/components/navbar/index'
 import cardImg from '@/images/driving.png'
 import Modal from '@/components/modal/index'
 import ScanCard from '@/components/scanCard'
+import withShare from '@/components/withShare'
 
 import styles from './index.module.less'
 
-export default props => {
+export default withShare()(props => {
   const [ driving, setDriving ] = useState({})
   const [ drivingBack, setDrivingBack ] = useState({})
   const chooseImage = async ({ code, message, data }, type) => {
@@ -155,4 +156,4 @@ export default props => {
       <Modal id='at-modal' />
     </Block>
   )
-}
+})

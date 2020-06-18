@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react'
 import Taro from '@tarojs/taro'
 import { View, Block, Text } from '@tarojs/components'
 import Navbar from '@/components/navbar/index'
+import withShare from '@/components/withShare'
 
 import styles from './index.module.less'
 
@@ -10,7 +11,7 @@ for(let i=0; i<180;i++){
   n.push(i)
 }
 
-export default props => {
+export default withShare()(props => {
   const [ direction, setDirection ] = useState(0)
   const [ location, setLocation ] = useState({})
   useEffect(() => {
@@ -67,4 +68,4 @@ export default props => {
       </View>
     </Block>
   )
-}
+})

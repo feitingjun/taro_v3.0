@@ -6,10 +6,11 @@ import idcardFrontImg from '@/images/idcard.png'
 import idcardBackImg from '@/images/idcard_back.png'
 import Modal from '@/components/modal/index'
 import ScanCard from '@/components/scanCard'
+import withShare from '@/components/withShare'
 
 import styles from './index.module.less'
 
-export default props => {
+export default withShare()(props => {
   const [ idcardFront, setIdcardFront ] = useState({
     name: {}, id: {}, address: {}, gender: {}, nationality: {}
   })
@@ -85,4 +86,4 @@ export default props => {
       <Modal id='at-modal' />
     </Block>
   )
-}
+})

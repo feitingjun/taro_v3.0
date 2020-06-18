@@ -3,11 +3,12 @@ import Taro from '@tarojs/taro'
 import { View, Block } from '@tarojs/components'
 import Navbar from '@/components/navbar/index'
 import { navHeight } from '@/conf/index'
+import withShare from '@/components/withShare'
 
 import styles from './index.module.less'
 const plugin = requirePlugin('chatbot')
 
-export default props => {
+export default withShare()(props => {
   useEffect(() => {
     // plugin.send({
     //   query: "今天成都天气怎么样",
@@ -25,4 +26,4 @@ export default props => {
       </View>
     </Block>
   )
-}
+})

@@ -5,12 +5,13 @@ import Navbar from '@/components/navbar/index'
 import { AtCheckbox, AtButton, AtMessage } from 'taro-ui'
 import { navHeight } from '@/conf/index'
 import Modal from '@/components/modal/index'
+import withShare from '@/components/withShare'
 import { saveSubscription } from '@/service/weather'
 
 import styles from './index.module.less'
 import rightImg from '@/images/right.png'
 
-export default props => {
+export default withShare()(props => {
   const { cid, district } = Current.router.params
   const [ location, setLocation ] = useState({ cid, district })
   const [ checkedList, setCheckedList ] = useState([])
@@ -142,4 +143,4 @@ export default props => {
       </View>
     </Block>
   )
-}
+})

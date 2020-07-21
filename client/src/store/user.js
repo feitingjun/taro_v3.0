@@ -16,6 +16,7 @@ class userStore {
   @action 
   setUserInfo = async (userInfo) => {
     this.userInfo = await getUserInfo(userInfo);
+    return this.userInfo
   }
   
 }

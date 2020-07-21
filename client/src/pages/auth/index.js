@@ -11,7 +11,10 @@ class Page extends React.Component {
 
   }
   click = (e) => {
-    
+    Taro.showModal({
+      content: '已登录',
+      showCancel: false
+    })
   }
   render(){
     return (

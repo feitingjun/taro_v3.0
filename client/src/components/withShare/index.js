@@ -11,7 +11,7 @@ export default (opt={}) => {
         imageUrl: shareImg,
         ...opt
       }))
-      return <Component />
+      return <Component ref={props.forwardedRef} />
     }
   }
   // return Component => {

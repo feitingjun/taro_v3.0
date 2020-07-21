@@ -5,8 +5,7 @@ import { observer, inject } from 'mobx-react'
 import { AtGrid } from 'taro-ui'
 
 import withShare from '@/components/withShare'
-import AuthBlock from '@/components/authBlock'
-// import api from '@/utils/api'
+import api from '@/utils/api'
 
 import styels from './index.module.less'
 import tianqiImg from '@/images/tianqi.png'
@@ -27,65 +26,60 @@ import authImg from '@/images/auth.png'
 class Index extends Component {
   handleGridClick = (item) => {
     if(item.url){
-      // api.navTo({
-      //   url: item.url
-      // }, item.url === '/pages/weather/index/index')
-      Taro.navigateTo({
+      api.navTo({
         url: item.url
-      })
+      }, item.url === '/pages/weather/index/index')
     }
   }
   render() {
     return (
       <View className={styels.container}>
         <View className={styels.header}></View>
-        <AuthBlock>
-          <AtGrid hasBorder={false} onClick={this.handleGridClick} data={[{
-            image: tianqiImg,
-            value: '天气',
-            url: '/pages/weather/index/index'
-          },{
-            image: zhinanImg,
-            value: '指南针',
-            url: '/pages/compass/index'
-          },{
-            image: jiqiImg,
-            value: '智能机器人',
-            url: '/pages/robot/index'
-          },{
-            image: translateImg,
-            value: '英汉互译',
-            url: '/pages/translate/index'
-          },{
-            image: speakImg,
-            value: '同声传译',
-            url: '/pages/speak/index'
-          },{
-            image: ocrImg,
-            value: 'OCR',
-            url: '/pages/ocr/index'
-          },{
-            image: scanImg,
-            value: '扫码识别',
-            url: '/pages/scan/index'
-          },{
-            image: mapImg,
-            value: '地图',
-            url: '/pages/map/index'
-          },{
-            image: luminanceImg,
-            value: '屏幕亮度',
-            url: '/pages/screenLuminance/index'
-          },{
-            image: electricityImg,
-            value: '电量',
-            url: '/pages/electricity/index'
-          },{
-            image: authImg,
-            value: '鉴权',
-            url: '/pages/auth/index'
-          }]} />
-        </AuthBlock>
+        <AtGrid hasBorder={false} onClick={this.handleGridClick} data={[{
+          image: tianqiImg,
+          value: '天气',
+          url: '/pages/weather/index/index'
+        },{
+          image: zhinanImg,
+          value: '指南针',
+          url: '/pages/compass/index'
+        },{
+          image: jiqiImg,
+          value: '智能机器人',
+          url: '/pages/robot/index'
+        },{
+          image: translateImg,
+          value: '英汉互译',
+          url: '/pages/translate/index'
+        },{
+          image: speakImg,
+          value: '同声传译',
+          url: '/pages/speak/index'
+        },{
+          image: ocrImg,
+          value: 'OCR',
+          url: '/pages/ocr/index'
+        },{
+          image: scanImg,
+          value: '扫码识别',
+          url: '/pages/scan/index'
+        },{
+          image: mapImg,
+          value: '地图',
+          url: '/pages/map/index'
+        },{
+          image: luminanceImg,
+          value: '屏幕亮度',
+          url: '/pages/screenLuminance/index'
+        },{
+          image: electricityImg,
+          value: '电量',
+          url: '/pages/electricity/index'
+        },{
+          image: authImg,
+          value: '鉴权',
+          url: '/pages/auth/index'
+        }]} />
       </View>
     )
   }

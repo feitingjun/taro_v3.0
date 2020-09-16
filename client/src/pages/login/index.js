@@ -8,8 +8,8 @@ import styles from './index.module.less'
 
 
 @withShare()
-@inject('userStore')
-@observer
+@inject('userStore') //传入store
+@observer //store变化刷新
 class Page extends React.Component {
   state = {
 
